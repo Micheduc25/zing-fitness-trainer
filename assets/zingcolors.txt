@@ -1,0 +1,12 @@
+01b6ff --skyblue
+
+2f00ad --deepblue
+
+eae5f7 --gray
+
+
+333333 --text-black
+
+ff1e00 --notification red
+
+6bd4ff --inputColor
