@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-<<<<<<< HEAD
-import 'package:provider/provider.dart';
-import 'package:zing_fitnes_trainer/providers/login_SignUpProvider.dart';
-=======
 import '../../../providers/login_SignUpProvider.dart';
->>>>>>> 874edd91bbf89dfb82ca5d53b874d83b0909482e
 import '../../../components/button.dart';
 import '../../../components/input.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';

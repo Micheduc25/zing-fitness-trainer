@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-<<<<<<< HEAD
-import 'package:zing_fitnes_trainer/components/footBg.dart';
-import 'package:zing_fitnes_trainer/providers/login_SignUpProvider.dart';
-import 'package:zing_fitnes_trainer/utils/myColors.dart';
-import './modules/Login.dart';
-import './modules/SignUp.dart';
-=======
 import '../../providers/login_SignUpProvider.dart';
 import '../../components/footBg.dart';
 import '../../utils/myColors.dart';
->>>>>>> 874edd91bbf89dfb82ca5d53b874d83b0909482e
 
 class Login_SignUP extends StatelessWidget {
   @override
