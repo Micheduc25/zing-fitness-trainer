@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:zing_fitnes_trainer/screens/bookings/bookings.dart';
+import 'package:zing_fitnes_trainer/screens/bookings_active/bookings_active.dart';
 
 void main() => runApp(MyApp());
 

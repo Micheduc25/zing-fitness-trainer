@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zing_fitnes_trainer/providers/provider.dart';
-import 'package:zing_fitnes_trainer/components/Profile.dart';
 import 'package:zing_fitnes_trainer/components/MyDrawer.dart';
-import 'package:zing_fitnes_trainer/screens/bookings/modules/bookings.dart';
+import 'package:zing_fitnes_trainer/screens/bookings_active/modules/active_session.dart';
+import 'package:zing_fitnes_trainer/screens/bookings_active/modules/bookings.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
 import 'package:zing_fitnes_trainer/components/tabBar.dart';
 
@@ -62,7 +62,7 @@ class BookingsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TabBarView(
-      children: <Widget>[Container(), Bookings()],
+      children: <Widget>[ActiveSession(), Bookings()],
     );
   }
 }
