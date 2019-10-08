@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zing_fitnes_trainer/components/InfoCard.dart';
 import 'package:zing_fitnes_trainer/components/InfoPages.dart';
 
 void main() => runApp(MyApp());
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
       paramValue1: "05:00 PM",
       paramTitle2: "End time",
       paramValue2: "07:00 PM",
+      card: InfoCard(),
     );
   }
 }
