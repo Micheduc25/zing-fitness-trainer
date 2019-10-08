@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../components/footBg.dart';
 import '../../utils/myColors.dart';
+import './modules/Login.dart';
+import './modules/SignUp.dart';
 
 class Login_SignUP extends StatelessWidget{
   @override
@@ -44,7 +46,8 @@ class MyLoginSignUp extends StatelessWidget{
                             width: MediaQuery.of(context).size.width/2.1
                           ),
 
-
+                          //this is the area where we are going to do out conditional rendering
+                          Login()
                         ],
                       ) ,
                     )
