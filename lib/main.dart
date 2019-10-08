@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import './components/input.dart';
+import './components/button.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,7 +16,12 @@ class MyApp extends StatelessWidget {
       ),
       home:Scaffold(
 
+
       )
     );
+
+       
+
+
   }
 }
