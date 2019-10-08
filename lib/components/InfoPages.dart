@@ -88,73 +88,86 @@ class InfoPagesBody extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var colors = MyColors();
+    double bottomPadding;
+    if (size.width > size.height) {
+      bottomPadding = 5;
+    } else {
+      bottomPadding = 0;
+    }
     return Container(
         padding: EdgeInsets.only(bottom: 0, top: 10, left: 30, right: 30),
         color: colors.skyBlue,
-        child: Column(
-          children: <Widget>[
-            IntrinsicHeight(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 40),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  this.paramTitle1,
-                                  style: TextStyle(
-                                      color: colors.deepBlue,
-                                      fontSize: 13,
-                                      height: 1.2),
-                                ),
-                                Text(
-                                  this.paramValue1,
-                                  style: TextStyle(
-                                      color: colors.textBlack,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w900),
-                                )
-                              ]),
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  this.paramTitle2,
-                                  style: TextStyle(
-                                      color: colors.deepBlue,
-                                      fontSize: 13,
-                                      height: 1.2),
-                                ),
-                                Text(
-                                  this.paramValue2,
-                                  style: TextStyle(
-                                      color: colors.textBlack,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w900),
-                                )
-                              ]),
-                        ],
-                      ),
+        child: ListView(
+          children: [
+            Column(
+              children: <Widget>[
+                IntrinsicHeight(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 40),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      this.paramTitle1,
+                                      style: TextStyle(
+                                          color: colors.deepBlue,
+                                          fontSize: 13,
+                                          height: 1.2),
+                                    ),
+                                    Text(
+                                      this.paramValue1,
+                                      style: TextStyle(
+                                          color: colors.textBlack,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w900),
+                                    )
+                                  ]),
+                              Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      this.paramTitle2,
+                                      style: TextStyle(
+                                          color: colors.deepBlue,
+                                          fontSize: 13,
+                                          height: 1.2),
+                                    ),
+                                    Text(
+                                      this.paramValue2,
+                                      style: TextStyle(
+                                          color: colors.textBlack,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w900),
+                                    )
+                                  ]),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                            width: size.width * 0.56,
+                            child: Image.asset("assets/images/mng.png"))
+                      ],
                     ),
-                    SizedBox(
-                        width: size.width * 0.56,
-                        child: Image.asset("assets/images/mng.png"))
-                  ],
+                  ),
                 ),
-              ),
+                this.card,
+                Padding(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: Button(text: "ACCEPT"),
+                )
+              ],
             ),
-            this.card,
             Padding(
-              padding: const EdgeInsets.only(top: 50),
-              child: Button(text: "ACCEPT"),
+              padding: EdgeInsets.all(bottomPadding),
             )
           ],
         ));
