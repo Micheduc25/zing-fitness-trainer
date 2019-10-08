@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../providers/login_SignUpProvider.dart';
-import '../../components/footBg.dart';
-import '../../utils/myColors.dart';
+import 'package:zing_fitnes_trainer/components/footBg.dart';
+import 'package:zing_fitnes_trainer/providers/login_SignUpProvider.dart';
+import 'package:zing_fitnes_trainer/utils/myColors.dart';
 import './modules/Login.dart';
 import './modules/SignUp.dart';
 
