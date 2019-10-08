@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import './components/input.dart';
+import './components/button.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +14,15 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home:Scaffold()
-    );
+      home:Scaffold(
+        appBar: AppBar(),
+        body:Column(
+          children: <Widget>[
+            Center(child:  Input_field(icon: Icons.email, hintText: 'hello we are here',),),
+            Button(text: 'Next',)
+      
+          ],
+        )
+    ));
   }
 }
