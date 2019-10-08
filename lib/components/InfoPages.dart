@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zing_fitnes_trainer/components/button.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
-import 'package:zing_fitnes_trainer/components/infoCard.dart';
 
 class InfoPages extends StatelessWidget {
   final String title;
@@ -74,7 +73,7 @@ class InfoPagesBody extends StatelessWidget {
 
   final cardTitle;
 
-  final card;
+  final Widget card;
 
   InfoPagesBody(
       {Key key,
@@ -152,7 +151,7 @@ class InfoPagesBody extends StatelessWidget {
                 ),
               ),
             ),
-            InfoCard(),
+            card,
             Padding(
               padding: const EdgeInsets.only(top: 50),
               child: Button(text: "ACCEPT"),

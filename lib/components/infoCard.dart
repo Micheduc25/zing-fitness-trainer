@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
 
 class InfoCard extends StatelessWidget {
-  InfoCard({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     var colors = MyColors();
