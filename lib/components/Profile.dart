@@ -20,8 +20,7 @@ class Profile extends StatelessWidget {
       contentPadding: EdgeInsets.all(5),
       leading: CircleAvatar(
         radius: 27,
-        backgroundImage:
-            AssetImage("assets/images/testImages/" + this.imageLink),
+        backgroundImage: AssetImage("assets/images/" + this.imageLink),
       ),
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
