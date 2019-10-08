@@ -17,11 +17,11 @@ class FootBg extends StatelessWidget {
                 offset: Offset(3, -25),
                 child: SizedBox(
                     width: imgWidth * 0.7,
-                    child: Image.asset("assets/leftCloud.png")),
+                    child: Image.asset("assets/images/leftCloud.png")),
               ),
               SizedBox(
                   width: imgWidth * 1.29,
-                  child: Image.asset("assets/runningMan.png")),
+                  child: Image.asset("assets/images/runningMan.png")),
             ]),
         Row(
             mainAxisAlignment: MainAxisAlignment.end,
