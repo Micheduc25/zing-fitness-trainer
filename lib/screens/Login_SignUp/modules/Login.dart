@@ -10,6 +10,7 @@ class Login extends StatelessWidget{
   Widget build(BuildContext context){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         //
         //this row contains two flatbuttons and a text widget
@@ -28,7 +29,7 @@ class Login extends StatelessWidget{
 
                     style:TextStyle(color: color.deepBlue, 
                       decoration: TextDecoration.underline,
-                      fontSize: 25,
+                      fontSize: 22,
                       fontWeight: FontWeight.w500
                     ) 
                   ),
@@ -57,8 +58,7 @@ class Login extends StatelessWidget{
                   child: Text('Sign Up',
 
                     style:TextStyle(color: color.deepBlue, 
-                      decoration: TextDecoration.underline,
-                      fontSize: 25
+                      fontSize: 22
                     ) 
                   ),
                 ),
@@ -70,6 +70,7 @@ class Login extends StatelessWidget{
 
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             //
             //this is the first child of the inner column and it holds the white texts
@@ -78,27 +79,42 @@ class Login extends StatelessWidget{
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height/90, 0, MediaQuery.of(context).size.height/50),
+                  padding: EdgeInsets.fromLTRB(
+                    0, 
+                    MediaQuery.of(context).size.height/90, 
+                    0, 
+                    MediaQuery.of(context).size.height/120),
                     child: Text("Make",
-                      style: TextStyle(color: color.white, fontSize: 25, fontWeight: FontWeight.w700),
+                      style: TextStyle(color: color.white, fontSize: 18, fontWeight: FontWeight.w700),
                     ),
                 ),
 
                 Text("Your self fit",
-                 style: TextStyle(color: color.white, fontSize: 25, fontWeight: FontWeight.w700),
+                 style: TextStyle(color: color.white, fontSize: 18, fontWeight: FontWeight.w700),
                 ),
               ],
             ),
 
+            Padding(
+              padding: EdgeInsets.all(8),
+            ),
 
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Input_field(icon: Icons.email, hintText: 'Email id',),
+
+                Padding(
+                  padding: EdgeInsets.all(7),
+                ),
+
                 Input_field(icon: Icons.lock_outline, hintText: 'Password',)
               ],
             ),
-
+              
+              Padding(
+              padding: EdgeInsets.all(3),
+            ),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -109,6 +125,10 @@ class Login extends StatelessWidget{
                     style: TextStyle(color: color.white),)
                 )
               ],
+            ),
+            
+            Padding(
+              padding: EdgeInsets.all(3),
             ),
 
             Button(text: 'LOGIN',),

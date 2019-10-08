@@ -13,7 +13,7 @@ class Button extends StatelessWidget {
       child: ButtonTheme(
           minWidth: MediaQuery.of(context).size.width -
               (MediaQuery.of(context).size.width / 7),
-          height: 60,
+          height: 50,
           child: RaisedButton(
             child: Text(text,
                 style: TextStyle(

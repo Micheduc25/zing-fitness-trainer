@@ -26,11 +26,12 @@ class MyLoginSignUp extends StatelessWidget{
           children: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width,
-              color:Colors.red,
+              // height: MediaQuery.of(context).size.height/1.3,
+              //color:Colors.red,
 
               padding: EdgeInsets.fromLTRB(
                 MediaQuery.of(context).size.width/15, 
-                MediaQuery.of(context).size.height/13, 
+                MediaQuery.of(context).size.height/15, 
                 MediaQuery.of(context).size.width/15,
                 0),
 
@@ -42,8 +43,8 @@ class MyLoginSignUp extends StatelessWidget{
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Image.asset('./assets/images/logo.png', 
-                            height: MediaQuery.of(context).size.height/8,
-                            width: MediaQuery.of(context).size.width/2.1
+                            height: MediaQuery.of(context).size.height/9.4,
+                            width: MediaQuery.of(context).size.width/2.2
                           ),
 
                           //this is the area where we are going to do out conditional rendering
