@@ -4,7 +4,7 @@ class FootBg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    var imgWidth = size.height * 0.1;
+    var imgWidth = size.height * 0.09;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -14,7 +14,7 @@ class FootBg extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Transform.translate(
-                offset: Offset(3, -28),
+                offset: Offset(3, -25),
                 child: SizedBox(
                     width: imgWidth * 0.7,
                     child: Image.asset("assets/leftCloud.png")),
