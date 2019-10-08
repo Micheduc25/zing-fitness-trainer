@@ -25,6 +25,7 @@ class DrawerBody extends StatelessWidget {
       "Payments",
       "Conversation"
     ];
+
     return Container(
       padding: EdgeInsets.all(10),
       width: size.width * 0.8,
@@ -32,40 +33,75 @@ class DrawerBody extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: Row(
+          Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Row(
+                children: <Widget>[
+                  CircleAvatar(
+                    radius: 35,
+                    backgroundImage: AssetImage("assets/images/runningMan.png"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Text(
+                      "Zhenya Rynzhuk",
+                      style: TextStyle(
+                          color: colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+
+          /////////////////////////////////////////////////////////
+          Expanded(
+            flex: 4,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                CircleAvatar(
-                  radius: 35,
-                  backgroundImage: AssetImage("assets/images/runningMan.png"),
+                Expanded(
+                  flex: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: SizedBox(
+                      height: 300,
+                      child: ListView.builder(
+                        itemCount: navIcons.length,
+                        itemBuilder: (context, index) {
+                          return _navItem(navIcons[index], navTitles[index]);
+                        },
+                      ),
+                    ),
+                  ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Text(
-                    "Zhenya Rynzhuk",
-                    style: TextStyle(
-                        color: colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700),
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: _navItem(Icons.exit_to_app, "Logout"),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 26),
+                        child: Text(
+                          "Version- 1.0.1",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      )
+                    ],
                   ),
                 )
               ],
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: SizedBox(
-              height: 300,
-              child: ListView.builder(
-                itemCount: navIcons.length,
-                itemBuilder: (context, index) {
-                  return _navItem(navIcons[index], navTitles[index]);
-                },
-              ),
-            ),
-          ),
-          _navItem(Icons.exit_to_app, "Logout")
+          )
         ],
       ),
     );
@@ -80,7 +116,7 @@ Widget _navItem(IconData icon, String title) {
     ),
     title: Text(
       title,
-      style: TextStyle(color: MyColors().white),
+      style: TextStyle(color: MyColors().white, fontSize: 14),
     ),
   );
 }
