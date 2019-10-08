@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zing_fitnes_trainer/providers/provider.dart';
-import 'package:zing_fitnes_trainer/components/Profile.dart';
 import 'package:zing_fitnes_trainer/components/MyDrawer.dart';
+import 'package:zing_fitnes_trainer/screens/bookings_active/modules/active_session.dart';
+import 'package:zing_fitnes_trainer/screens/bookings_active/modules/bookings.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
 import 'package:zing_fitnes_trainer/components/tabBar.dart';
 
@@ -57,8 +58,11 @@ class BookingsPage extends StatelessWidget {
 }
 
 class BookingsBody extends StatelessWidget {
+  //this will be modified later to make the list dynamic
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return TabBarView(
+      children: <Widget>[ActiveSession(), Bookings()],
+    );
   }
 }

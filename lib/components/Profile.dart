@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zing_fitnes_trainer/utils/myColors.dart';
 
 class Profile extends StatelessWidget {
   final String name;
@@ -19,7 +20,7 @@ class Profile extends StatelessWidget {
       contentPadding: EdgeInsets.all(5),
       leading: CircleAvatar(
         radius: 27,
-        backgroundImage: AssetImage("assets/" + this.imageLink),
+        backgroundImage: AssetImage("assets/images/" + this.imageLink),
       ),
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,8 +35,7 @@ class Profile extends StatelessWidget {
           RichText(
             text: TextSpan(
                 text: this.experience.toString() + "+ ",
-                style: TextStyle(
-                    color: Color.fromRGBO(0, 144, 109, 1), fontSize: 10),
+                style: TextStyle(color: MyColors().deepBlue, fontSize: 10),
                 children: <TextSpan>[
                   TextSpan(
                       text: "yrs experience",
@@ -64,7 +64,7 @@ class Profile extends StatelessWidget {
         children: <Widget>[
           Icon(
             Icons.check_box,
-            color: Color.fromRGBO(0, 144, 109, 1),
+            color: MyColors().deepBlue,
             size: 13,
           ),
           Padding(
