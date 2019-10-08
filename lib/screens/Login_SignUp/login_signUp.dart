@@ -71,6 +71,7 @@ class MyLoginSignUp extends StatelessWidget{
             ),
 
 
+            //this is for the footer element
             FootBg(),
           ],
         )
