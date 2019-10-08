@@ -17,11 +17,11 @@ class FootBg extends StatelessWidget {
                 offset: Offset(3, -25),
                 child: SizedBox(
                     width: imgWidth * 0.7,
-                    child: Image.asset("assets/leftCloud.png")),
+                    child: Image.asset("assets/images/leftCloud.png")),
               ),
               SizedBox(
                   width: imgWidth * 1.29,
-                  child: Image.asset("assets/runningMan.png")),
+                  child: Image.asset("assets/images/runningMan.png")),
             ]),
         Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -32,10 +32,10 @@ class FootBg extends StatelessWidget {
                   width: imgWidth * 0.97,
                   child: Transform.translate(
                       offset: Offset(14, 0.0),
-                      child: Image.asset("assets/blackWoman.png"))),
+                      child: Image.asset("assets/images/blackWoman.png"))),
               SizedBox(
                   width: imgWidth * 1.1,
-                  child: Image.asset("assets/rightCloud.png")),
+                  child: Image.asset("assets/images/rightCloud.png")),
             ])
       ],
     );

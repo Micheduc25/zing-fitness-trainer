@@ -25,11 +25,11 @@ class Home extends StatelessWidget {
                   child: SizedBox(
                       width: double.infinity,
                       height: size.height * 0.17,
-                      child: Image.asset("assets/logo.png"))),
+                      child: Image.asset("assets/images/logo.png"))),
               SizedBox(
                   width: double.infinity,
                   height: size.height * 0.36,
-                  child: Image.asset("assets/mng.png"))
+                  child: Image.asset("assets/images/mng.png"))
             ]));
   }
 }
