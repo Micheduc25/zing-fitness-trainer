@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
-import 'package:zing_fitnes_trainer/components/button.dart';
 
 class InfoCard extends StatelessWidget {
   InfoCard({Key key}) : super(key: key);
@@ -11,17 +10,20 @@ class InfoCard extends StatelessWidget {
     return Stack(
       alignment: Alignment.bottomCenter,
       children: <Widget>[
-        Container(
-          decoration: BoxDecoration(
-              color: colors.gray,
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          padding: EdgeInsets.only(top: 10, bottom: 30, left: 10, right: 10),
-          width: size.width * 0.75,
-          child: Text("User info",
-              style: TextStyle(color: colors.deepBlue, fontSize: 13)),
+        Positioned(
+          top: 0,
+          child: Container(
+            decoration: BoxDecoration(
+                color: colors.gray,
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            padding: EdgeInsets.only(top: 10, bottom: 30, left: 10, right: 10),
+            width: size.width * 0.75,
+            child: Text("User info",
+                style: TextStyle(color: colors.deepBlue, fontSize: 13)),
+          ),
         ),
         Transform.translate(
-          offset: Offset(0, 30),
+          offset: Offset(0, 35),
           child: Container(
             decoration: BoxDecoration(
                 color: colors.white,
@@ -50,10 +52,11 @@ class InfoCard extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 5),
                         child: Text("24/08/2019"),
-                      )
+                      ),
                     ],
                   ),
                 ),
+                Divider(),
                 otherInfo("Session type", "Body Sculpting"),
                 otherInfo("Speciality", "Cardio"),
                 Container(
@@ -87,7 +90,7 @@ class InfoCard extends StatelessWidget {
 }
 
 Widget _cardListItem(
-    {Widget leading = null, String title = "", String subtitle = ""}) {
+    {Widget leading, String title = "", String subtitle = ""}) {
   return Container(
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 3),
       child: Row(
@@ -125,15 +128,15 @@ Widget otherInfo(title, content) {
   return Container(
     alignment: Alignment.centerLeft,
     margin: EdgeInsets.only(left: 61),
-    padding: EdgeInsets.symmetric(vertical: 4),
+    padding: EdgeInsets.symmetric(vertical: 3),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(title,
-            style: TextStyle(fontSize: 13, color: MyColors().textBlack)),
+            style: TextStyle(fontSize: 12, color: MyColors().textBlack)),
         Text(content,
             style: TextStyle(
-                fontSize: 17,
+                fontSize: 16,
                 fontWeight: FontWeight.w900,
                 color: MyColors().textBlack))
       ],

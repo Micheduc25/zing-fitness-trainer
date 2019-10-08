@@ -64,17 +64,17 @@ class InfoPages extends StatelessWidget {
 }
 
 class InfoPagesBody extends StatelessWidget {
-  var paramTitle1;
+  final paramTitle1;
 
-  var paramTitle2;
+  final paramTitle2;
 
-  var paramValue1;
+  final paramValue1;
 
-  var paramValue2;
+  final paramValue2;
 
-  var cardTitle;
+  final cardTitle;
 
-  var card;
+  final card;
 
   InfoPagesBody(
       {Key key,
@@ -95,63 +95,66 @@ class InfoPagesBody extends StatelessWidget {
         child: Column(
           children: <Widget>[
             IntrinsicHeight(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 40),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                this.paramTitle1,
-                                style: TextStyle(
-                                    color: colors.deepBlue,
-                                    fontSize: 13,
-                                    height: 1.2),
-                              ),
-                              Text(
-                                this.paramValue1,
-                                style: TextStyle(
-                                    color: colors.textBlack,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w900),
-                              )
-                            ]),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                this.paramTitle2,
-                                style: TextStyle(
-                                    color: colors.deepBlue,
-                                    fontSize: 13,
-                                    height: 1.2),
-                              ),
-                              Text(
-                                this.paramValue2,
-                                style: TextStyle(
-                                    color: colors.textBlack,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w900),
-                              )
-                            ]),
-                      ],
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 40),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.max,
+                        children: <Widget>[
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  this.paramTitle1,
+                                  style: TextStyle(
+                                      color: colors.deepBlue,
+                                      fontSize: 13,
+                                      height: 1.2),
+                                ),
+                                Text(
+                                  this.paramValue1,
+                                  style: TextStyle(
+                                      color: colors.textBlack,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w900),
+                                )
+                              ]),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  this.paramTitle2,
+                                  style: TextStyle(
+                                      color: colors.deepBlue,
+                                      fontSize: 13,
+                                      height: 1.2),
+                                ),
+                                Text(
+                                  this.paramValue2,
+                                  style: TextStyle(
+                                      color: colors.textBlack,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w900),
+                                )
+                              ]),
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                      width: size.width * 0.56,
-                      child: Image.asset("assets/images/mng.png"))
-                ],
+                    SizedBox(
+                        width: size.width * 0.56,
+                        child: Image.asset("assets/images/mng.png"))
+                  ],
+                ),
               ),
             ),
             InfoCard(),
             Padding(
-              padding: const EdgeInsets.only(top: 40),
+              padding: const EdgeInsets.only(top: 50),
               child: Button(text: "ACCEPT"),
             )
           ],
