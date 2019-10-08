@@ -15,14 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home:Scaffold(
-        appBar: AppBar(),
-        body:Column(
-          children: <Widget>[
-            Center(child:  Input_field(icon: Icons.email, hintText: 'hello we are here',),),
-            Button(text: 'Next',)
-      
-          ],
-        )
+       
     ));
   }
 }
