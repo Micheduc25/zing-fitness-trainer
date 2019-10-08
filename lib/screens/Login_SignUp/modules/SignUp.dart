@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../../providers/login_SignUpProvider.dart';
+import 'package:provider/provider.dart';
 import '../../../components/button.dart';
 import '../../../components/input.dart';
 import '../../../utils/myColors.dart';
+import './Login.dart';
 
 
 class SignUp extends StatelessWidget{
@@ -22,17 +26,23 @@ class SignUp extends StatelessWidget{
              ButtonTheme(
               minWidth: 5,
               child: 
-                FlatButton(
-                  padding: EdgeInsets.all(0),
+              
+               Consumer<Login_SignUp_Provider>(
+                 builder: (context, data, child)=>
+                  FlatButton(
+                    padding: EdgeInsets.all(0),
 
-                  child: Text('Login',
+                    child: Text('Login',
 
-                    style:TextStyle(color: color.deepBlue, 
-                      fontSize: 22,
-                      fontWeight: FontWeight.w500
-                    ) 
+                      style:TextStyle(color: color.deepBlue, 
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500
+                      ) 
+                    ),
+
+                    onPressed: (){data.changeCode=Login();},
                   ),
-                ),
+               )
             ),
 
             Padding(
@@ -73,7 +83,7 @@ class SignUp extends StatelessWidget{
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Input_field(icon: Icons.email, hintText: 'Trainer name',),
+              Input_field(icon: Icons.perm_identity, hintText: 'Trainer name',),
 
               Padding(padding: EdgeInsets.all(7),),
 
@@ -81,7 +91,7 @@ class SignUp extends StatelessWidget{
 
               Padding(padding: EdgeInsets.all(7),),
 
-              Input_field(icon: Icons.lock_outline, hintText: 'Mobile number',),
+              Input_field(icon: Icons.phone_iphone, hintText: 'Mobile number',),
 
               Padding(padding: EdgeInsets.all(7),),
 

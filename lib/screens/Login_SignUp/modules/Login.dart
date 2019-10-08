@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../components/button.dart';
 import '../../../components/input.dart';
 import '../../../utils/myColors.dart';
+import '../../../providers/login_SignUpProvider.dart';
+import './SignUp.dart';
 
 
 class Login extends StatelessWidget{
@@ -33,6 +36,7 @@ class Login extends StatelessWidget{
                       fontWeight: FontWeight.w500
                     ) 
                   ),
+
                 ),
             ),
 
@@ -48,20 +52,26 @@ class Login extends StatelessWidget{
                 style:TextStyle(color: color.white)) ,
             ),
 
+//here we are using provider to switch to Signup upon clicking signUp
+            Consumer<Login_SignUp_Provider>(
+              builder: (context, data,child)=>
+              
+              ButtonTheme(
+                minWidth: 5,
+                child: 
+                  FlatButton(
+                    padding: EdgeInsets.all(0),
 
-            ButtonTheme(
-              minWidth: 5,
-              child: 
-                FlatButton(
-                  padding: EdgeInsets.all(0),
+                    child: Text('Sign Up',
 
-                  child: Text('Sign Up',
+                      style:TextStyle(color: color.deepBlue, 
+                        fontSize: 22
+                      ) 
+                    ),
 
-                    style:TextStyle(color: color.deepBlue, 
-                      fontSize: 22
-                    ) 
+                    onPressed: (){data.changeCode=SignUp();},
                   ),
-                ),
+              )
             )
             
           ],

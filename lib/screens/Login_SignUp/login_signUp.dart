@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../providers/login_SignUpProvider.dart';
 import '../../components/footBg.dart';
 import '../../utils/myColors.dart';
 import './modules/Login.dart';
@@ -48,7 +50,19 @@ class MyLoginSignUp extends StatelessWidget{
                           ),
 
                           //this is the area where we are going to do out conditional rendering
-                          Login()
+                          MultiProvider(
+                            providers: [
+                              ChangeNotifierProvider(
+                                builder: (_)=>Login_SignUp_Provider(),
+                              ),
+
+                            ],
+
+                            child: Consumer<Login_SignUp_Provider>(
+                            builder: (context, data, child)=>data.showCode
+                          ),
+                          )
+                          
                         ],
                       ) ,
                     )
