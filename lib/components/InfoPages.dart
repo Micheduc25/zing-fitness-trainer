@@ -52,11 +52,11 @@ class InfoPages extends StatelessWidget {
               );
             })),
         body: InfoPagesBody(
-          paramTitle1: this.paramTitle1,
-          paramTitle2: this.paramTitle2,
-          paramValue1: this.paramValue1,
-          paramValue2: this.paramValue2,
-        ),
+            paramTitle1: this.paramTitle1,
+            paramTitle2: this.paramTitle2,
+            paramValue1: this.paramValue1,
+            paramValue2: this.paramValue2,
+            card: this.card),
       ),
     );
   }
@@ -151,7 +151,7 @@ class InfoPagesBody extends StatelessWidget {
                 ),
               ),
             ),
-            card,
+            this.card,
             Padding(
               padding: const EdgeInsets.only(top: 50),
               child: Button(text: "ACCEPT"),
