@@ -53,7 +53,7 @@ class Login extends StatelessWidget{
             ),
 
 //here we are using provider to switch to Signup upon clicking signUp
-            Consumer<LoginSignUpProvider>(
+            Consumer<Login_SignUp_Provider>(
               builder: (context, data,child)=>
               
               ButtonTheme(
@@ -69,7 +69,15 @@ class Login extends StatelessWidget{
                       ) 
                     ),
 
-                    onPressed: (){data.changeCode=SignUp();},
+                    onPressed: (){data.changeCode=
+                    Column(
+                        children: <Widget>[
+                           SignUp(),
+                           Padding(
+                             padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height/180),
+                           )
+                        ],
+                      );},
                   ),
               )
             )

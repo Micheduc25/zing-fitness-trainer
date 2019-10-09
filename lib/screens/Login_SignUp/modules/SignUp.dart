@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../../../providers/login_SignUpProvider.dart';
 import '../../../components/button.dart';
 import '../../../components/input.dart';
-import '../../../utils/myColors.dart';
+import 'package:zing_fitnes_trainer/utils/myColors.dart';
 import './Login.dart';
 
 class SignUp extends StatelessWidget {
@@ -22,7 +22,7 @@ class SignUp extends StatelessWidget {
           children: <Widget>[
             ButtonTheme(
                 minWidth: 5,
-                child: Consumer<LoginSignUpProvider>(
+                child: Consumer<Login_SignUp_Provider>(
                   builder: (context, data, child) => FlatButton(
                     padding: EdgeInsets.all(0),
                     child: Text('Login',
@@ -30,8 +30,16 @@ class SignUp extends StatelessWidget {
                             color: color.deepBlue,
                             fontSize: 22,
                             fontWeight: FontWeight.w500)),
+
                     onPressed: () {
-                      data.changeCode = Login();
+                      data.changeCode =Column(
+                        children: <Widget>[
+                           Login(),
+                           Padding(
+                             padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height/27),
+                           )
+                        ],
+                      );
                     },
                   ),
                 )),
