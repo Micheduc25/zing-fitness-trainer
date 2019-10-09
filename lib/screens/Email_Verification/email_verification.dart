@@ -3,9 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:zing_fitnes_trainer/components/button.dart';
 import 'package:zing_fitnes_trainer/components/footBg.dart';
 import '../../providers/login_SignUpProvider.dart';
-
-
-import '../../utils/myColors.dart';
+import 'package:zing_fitnes_trainer/utils/myColors.dart';
 
 
 class EmailVerification extends StatelessWidget{
@@ -50,6 +48,7 @@ class MyEmailCheckout extends StatelessWidget{
                     Center(
                       child:Text('Email Verification', style: TextStyle(
                         fontSize: 25,
+                        color: col.textBlack,
                         fontWeight: FontWeight.w800
                       ),) ,),
 
@@ -78,9 +77,10 @@ class MyEmailCheckout extends StatelessWidget{
                     FourInputs(),
 
 
-                    Padding(padding: EdgeInsets.symmetric(vertical:MediaQuery.of(context).size.height/12),),
+                    Padding(padding: EdgeInsets.symmetric(vertical:MediaQuery.of(context).size.height/15),),
 
-                    Button(text: 'SUBMIT',)
+                    Button(text: 'SUBMIT',),
+                     Padding(padding: EdgeInsets.symmetric(vertical:MediaQuery.of(context).size.height/120),),
                   ],
                 )
             ),
