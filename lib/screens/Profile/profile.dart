@@ -2,10 +2,8 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:zing_fitnes_trainer/components/MyDrawer.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/pFootbg.dart';
-import 'package:zing_fitnes_trainer/screens/Profile/modules/personal_details.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/profileTabBar.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/profileup.dart';
-import 'package:zing_fitnes_trainer/screens/Profile/modules/trainer_info.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/views/tabBarviews.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
 
@@ -54,34 +52,25 @@ class ProfilePageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
+      constraints: BoxConstraints.expand(),
       child: SingleChildScrollView(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //this column contains the whole body
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Padding(
-              //this padding contains the upper part of the body and it gives some padding
-              //between the screen edges and the widgets
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: <Widget>[
-                  //this column contains the widgets of the upper body, (all but the footer image)
-                  new ProfileUp(),
-                  //the gray container with the avatar(ProfileUp) ends here
-
+                  ProfileUp(),
                   ProfileTabBar(),
-
-                  Container(
-                    margin: EdgeInsets.only(top: 20),
-                    width: double.infinity,
-                    // height: 273,
-                    height: size.height * 0.4255,
-                    child: MyViews(),
-                  )
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8),
+                  ),
+                  MyViews()
                 ],
               ),
             ),
-            FootBgr()
+            FootBgr(),
           ],
         ),
       ),
