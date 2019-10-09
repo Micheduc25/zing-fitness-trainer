@@ -62,6 +62,7 @@ class BookingsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TabBarView(
+      physics: NeverScrollableScrollPhysics(),
       children: <Widget>[ActiveSession(), Bookings()],
     );
   }
