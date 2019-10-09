@@ -30,8 +30,16 @@ class SignUp extends StatelessWidget {
                             color: color.deepBlue,
                             fontSize: 22,
                             fontWeight: FontWeight.w500)),
+
                     onPressed: () {
-                      data.changeCode = Login();
+                      data.changeCode =Column(
+                        children: <Widget>[
+                           Login(),
+                           Padding(
+                             padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height/27),
+                           )
+                        ],
+                      );
                     },
                   ),
                 )),
