@@ -43,7 +43,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.2"
-<<<<<<< HEAD
   datetime_picker_formfield:
     dependency: "direct main"
     description:
@@ -51,7 +50,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.8"
-=======
   dotted_border:
     dependency: "direct main"
     description:
@@ -59,7 +57,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
->>>>>>> c1423f8a379ce185a926316866fdd05b10c15202
   flutter:
     dependency: "direct main"
     description: flutter
