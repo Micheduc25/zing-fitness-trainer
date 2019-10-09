@@ -53,7 +53,7 @@ class Login extends StatelessWidget{
             ),
 
 //here we are using provider to switch to Signup upon clicking signUp
-            Consumer<Login_SignUp_Provider>(
+            Consumer<LoginSignUpProvider>(
               builder: (context, data,child)=>
               
               ButtonTheme(

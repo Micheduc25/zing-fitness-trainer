@@ -14,13 +14,13 @@ class InfoPages extends StatelessWidget {
 
   InfoPages(
       {Key key,
-      this.title,
-      this.paramTitle1,
-      this.paramValue1,
-      this.paramTitle2,
-      this.paramValue2,
-      this.cardTitle,
-      this.card})
+        this.title,
+        this.paramTitle1,
+        this.paramValue1,
+        this.paramTitle2,
+        this.paramValue2,
+        this.cardTitle,
+        this.card})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -28,30 +28,13 @@ class InfoPages extends StatelessWidget {
     return MaterialApp(
       title: "Bookings details",
       home: Scaffold(
-        appBar: PreferredSize(
-            preferredSize: Size(double.infinity, 50),
-            child: LayoutBuilder(builder: (context, constraints) {
-              return Container(
-                color: colors.skyBlue,
-                child: Row(children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: 0),
-                    child: IconButton(
-                      padding: EdgeInsets.all(0),
-                      alignment: Alignment.centerLeft,
-                      icon: Icon(Icons.navigate_before),
-                      onPressed: () {},
-                    ),
-                  ),
-                  Padding(
-                      padding:
-                          EdgeInsets.only(left: constraints.maxWidth * 0.19),
-                      child: Text(this.title,
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w900)))
-                ]),
-              );
-            })),
+        backgroundColor: colors.skyBlue,
+        appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: Colors.transparent,
+          title: Text("Bookings Details",style: TextStyle(fontSize: 20)),
+          centerTitle: true,
+        ),
         body: InfoPagesBody(
           paramTitle1: this.paramTitle1,
           paramTitle2: this.paramTitle2,
@@ -78,12 +61,12 @@ class InfoPagesBody extends StatelessWidget {
 
   InfoPagesBody(
       {Key key,
-      this.paramTitle1,
-      this.paramValue1,
-      this.paramTitle2,
-      this.paramValue2,
-      this.cardTitle,
-      this.card})
+        this.paramTitle1,
+        this.paramValue1,
+        this.paramTitle2,
+        this.paramValue2,
+        this.cardTitle,
+        this.card})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -161,3 +144,4 @@ class InfoPagesBody extends StatelessWidget {
         ));
   }
 }
+
