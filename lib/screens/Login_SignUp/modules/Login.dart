@@ -69,7 +69,15 @@ class Login extends StatelessWidget{
                       ) 
                     ),
 
-                    onPressed: (){data.changeCode=SignUp();},
+                    onPressed: (){data.changeCode=
+                    Column(
+                        children: <Widget>[
+                           SignUp(),
+                           Padding(
+                             padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height/180),
+                           )
+                        ],
+                      );},
                   ),
               )
             )

@@ -24,7 +24,9 @@ class MyEmailCheckout extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      body: Container(
+      body: ListView(
+        children:[
+        Container(
         color: col.skyBlue,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,6 +90,8 @@ class MyEmailCheckout extends StatelessWidget{
           ],
         )
       ),
+        ]
+      )
     );
   }
 }

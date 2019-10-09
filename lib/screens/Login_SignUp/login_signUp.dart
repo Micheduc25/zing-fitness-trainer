@@ -18,19 +18,20 @@ class MyLoginSignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: ListView(
+        children: <Widget>[
+          Container(
+           
           color: col.skyBlue,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
+                
                   width: MediaQuery.of(context).size.width,
-                  // height: MediaQuery.of(context).size.height/1.3,
-                  //color:Colors.red,
-
                   padding: EdgeInsets.fromLTRB(
                       MediaQuery.of(context).size.width / 15,
-                      MediaQuery.of(context).size.height / 15,
+                      MediaQuery.of(context).size.height / 40,
                       MediaQuery.of(context).size.width / 15,
                       0),
                   child: Row(
@@ -44,7 +45,24 @@ class MyLoginSignUp extends StatelessWidget {
                                     MediaQuery.of(context).size.height / 9.4,
                                 width: MediaQuery.of(context).size.width / 2.2),
 
+                            //
                             //this is the area where we are going to do out conditional rendering
+                            //
+                            //The logic used here is that there is a provider class having a variable 
+                            //that controls which widget is to be displayed here
+                            //
+                            //initially the variable holds the Login() class and a Padding class to 
+                            // provide some space before the FootBg() element
+                            //
+                            //the Login() and SignUp() Widget(class) both Contains a flatButton with 
+                            //the Label Login, and Another  Flatbutton with the label SignUp
+                            //
+                            //if you click on the flatbutton with the label Login then the Login widget 
+                            //is what is displayed together with a Padding widget
+                            //
+                            //if you click on the flatbutton with the label SignUp, then then the SignUp 
+                            //widget is displayed together with a Padding widget
+                            //
                             MultiProvider(
                               providers: [
                                 ChangeNotifierProvider(
@@ -65,6 +83,8 @@ class MyLoginSignUp extends StatelessWidget {
               FootBg(),
             ],
           )),
+        ],
+      )
     );
   }
 }
