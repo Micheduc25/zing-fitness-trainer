@@ -37,7 +37,7 @@ class BookingsCard extends StatelessWidget {
                       size: 29,
                     ),
                     title: "California",
-                    subtitle: '548 Market St, San Francisco, CA 94104'),
+                    subtitle: '548 Market St, San Francisco'),
                 Divider(),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
