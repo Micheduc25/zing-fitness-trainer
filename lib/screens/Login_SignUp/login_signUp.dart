@@ -26,7 +26,7 @@ class MyLoginSignUp extends StatelessWidget {
               children: <Widget>[
                 Container(
                     width: MediaQuery.of(context).size.width,
-                     height: MediaQuery.of(context).size.height,
+                     //height: MediaQuery.of(context).size.height,
                     //color:Colors.red,
 
                     padding: EdgeInsets.fromLTRB(
