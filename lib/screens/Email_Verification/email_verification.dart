@@ -24,11 +24,12 @@ class MyEmailCheckout extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      body: ListView(
-        children:[
+      body: 
         Container(
         color: col.skyBlue,
-        child: Column(
+        child: ListView(
+          children: <Widget>[
+            Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           
           children: <Widget>[
@@ -89,9 +90,11 @@ class MyEmailCheckout extends StatelessWidget{
             FootBg(),
           ],
         )
+          ],
+        )
       ),
-        ]
-      )
+        
+      
     );
   }
 }

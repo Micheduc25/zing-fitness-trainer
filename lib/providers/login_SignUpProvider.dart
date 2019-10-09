@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:zing_fitnes_trainer/screens/Login_SignUp/modules/Login.dart';
 
-class Login_SignUp_Provider with ChangeNotifier {
+class LoginSignUpProvider with ChangeNotifier {
   Widget _code = Temp();
 
   set changeCode(value) {
@@ -24,7 +24,7 @@ class Temp extends StatelessWidget{
       children: <Widget>[
           Login(),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height/27),
+            padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height/30),
           )
       ],
     );
