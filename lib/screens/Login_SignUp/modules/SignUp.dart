@@ -36,7 +36,7 @@ class SignUp extends StatelessWidget {
                         children: <Widget>[
                            Login(),
                            Padding(
-                             padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height/27),
+                             padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height/40),
                            )
                         ],
                       );

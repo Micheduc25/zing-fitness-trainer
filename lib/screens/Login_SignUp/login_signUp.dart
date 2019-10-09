@@ -18,12 +18,14 @@ class MyLoginSignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: <Widget>[
-          Container(
+      body: 
+        Container(
+            height: MediaQuery.of(context).size.height,
            
           color: col.skyBlue,
-          child: Column(
+          child: ListView(
+            children: <Widget>[
+              Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
@@ -41,6 +43,7 @@ class MyLoginSignUp extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Image.asset('./assets/images/logo.png',
+                                alignment: Alignment.centerLeft,
                                 height:
                                     MediaQuery.of(context).size.height / 9.4,
                                 width: MediaQuery.of(context).size.width / 2.2),
@@ -82,9 +85,12 @@ class MyLoginSignUp extends StatelessWidget {
               //this is for the footer element
               FootBg(),
             ],
-          )),
-        ],
-      )
+          )
+            ],
+          )
+        ),
+      
+      
     );
   }
 }
