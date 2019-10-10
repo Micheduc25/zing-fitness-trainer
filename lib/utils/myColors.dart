@@ -13,4 +13,6 @@ class MyColors {
 
   Color notificationRed = new Color(0xffff1e00);
   Color white = new Color(0xffffffffff);
+  Color chatBlue = new Color(0xff01a1e1);
+  Color inputWhite = Colors.white70;
 }

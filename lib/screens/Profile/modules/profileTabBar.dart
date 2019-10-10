@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
 
 class ProfileTabBar extends StatefulWidget {
