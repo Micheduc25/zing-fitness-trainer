@@ -110,13 +110,11 @@ Widget _cardListItem(
                       fontWeight: FontWeight.w900),
                 ),
               ),
-              Text(
-                subtitle,
-                maxLines: 3,
-                softWrap: true,
-                overflow: TextOverflow.fade,
+              RichText(
+                  text: TextSpan(
+                text: subtitle,
                 style: TextStyle(color: MyColors().textBlack, fontSize: 13),
-              )
+              ))
             ],
           ),
         ],

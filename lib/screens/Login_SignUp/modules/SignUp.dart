@@ -22,7 +22,7 @@ class SignUp extends StatelessWidget {
           children: <Widget>[
             ButtonTheme(
                 minWidth: 5,
-                child: Consumer<Login_SignUp_Provider>(
+                child: Consumer<LoginSignUpProvider>(
                   builder: (context, data, child) => FlatButton(
                     padding: EdgeInsets.all(0),
                     child: Text('Login',
@@ -36,7 +36,7 @@ class SignUp extends StatelessWidget {
                         children: <Widget>[
                            Login(),
                            Padding(
-                             padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height/27),
+                             padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height/40),
                            )
                         ],
                       );
