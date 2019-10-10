@@ -19,7 +19,7 @@ class Button extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
-                  fontWeight: FontWeight.w900,
+                  fontWeight: FontWeight.w600,
                 )),
             color: colors.deepBlue,
             shape:

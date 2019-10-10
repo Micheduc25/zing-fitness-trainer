@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 
+
 import 'package:zing_fitnes_trainer/screens/Login_SignUp/login_signUp.dart';
 
 import 'package:zing_fitnes_trainer/screens/Conversations/conversation.dart';
@@ -8,6 +9,14 @@ import 'package:zing_fitnes_trainer/screens/bookings_active/bookings_active.dart
 
 
 import 'package:zing_fitnes_trainer/screens/Profile/profile.dart';
+
+import 'package:zing_fitnes_trainer/screens/Email_Verification/email_verification.dart';
+import 'package:zing_fitnes_trainer/screens/Login_SignUp/login_signUp.dart';
+import 'package:zing_fitnes_trainer/screens/Trainer_Info_add/trainerInfoAdd.dart';
+import 'package:zing_fitnes_trainer/screens/bookingsDetail/bookingsDetails.dart';
+import 'package:zing_fitnes_trainer/screens/bookings_active/bookings_active.dart';
+import 'package:zing_fitnes_trainer/screens/userInfo/userInfo.dart';
+
 
 
 void main() => runApp(MyApp());
@@ -17,9 +26,13 @@ class MyApp extends StatelessWidget {
 
   Widget build(BuildContext context) {
 
+
    // return BookingsPage();
 
-    return ProfilePage();
+    return EmailVerification();
+
+
+    //return Login_SignUP();
 
   }
 }

@@ -21,6 +21,7 @@ class ProfileUp extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               DottedBorder(
                 //the image with the dotted border here

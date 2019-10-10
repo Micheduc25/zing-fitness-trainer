@@ -6,46 +6,49 @@ class PersonalDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         alignment: Alignment.topLeft,
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          //the gray container containing physical properties and their values
-          Container(
-            padding: EdgeInsets.all(15),
-            decoration: BoxDecoration(
-                color: MyColors().gray,
-                borderRadius: BorderRadius.all(Radius.circular(20))),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                _physicalItem("Height", "172 cm"),
-                _physicalItem("Weight", "63 kg"),
-                _physicalItem("HR max", "189"),
-                _physicalItem("Type", "Crossfit"),
-              ],
+        child: SingleChildScrollView(
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            //the gray container containing physical properties and their values
+            Container(
+              padding: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                  color: MyColors().gray,
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  _physicalItem("Height", "172 cm"),
+                  _physicalItem("Weight", "63 kg"),
+                  _physicalItem("HR max", "189"),
+                  _physicalItem("Type", "Crossfit"),
+                ],
+              ),
             ),
-          ),
-          //container ends here,
+            //container ends here,
 
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 8),
-          ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 8),
+            ),
 
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              detailItem("Trainer name", "Nathan Riley"),
-              Divider(
-                color: MyColors().gray,
-                thickness: 2,
-              ),
-              detailItem("Email Id", "zhenya@imail.com"),
-              Divider(
-                color: MyColors().gray,
-                thickness: 2,
-              ),
-              detailItem("Mobile no", "+237 679361858"),
-            ],
-          )
-        ]));
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                detailItem("Trainer name", "Nathan Riley"),
+                Divider(
+                  color: MyColors().gray,
+                  thickness: 2,
+                ),
+                detailItem("Email Id", "zhenya@imail.com"),
+                Divider(
+                  color: MyColors().gray,
+                  thickness: 2,
+                ),
+                detailItem("Mobile no", "+237 679361858"),
+              ],
+            )
+          ]),
+        ));
   }
 }
 

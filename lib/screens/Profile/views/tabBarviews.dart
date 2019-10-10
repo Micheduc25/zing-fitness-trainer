@@ -5,9 +5,13 @@ import 'package:zing_fitnes_trainer/screens/Profile/modules/trainer_info.dart';
 class MyViews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return TabBarView(
-      physics: NeverScrollableScrollPhysics(),
-      children: <Widget>[PersonalDetails(), TrainerInfo()],
+    var size = MediaQuery.of(context).size;
+    return Container(
+      height: size.height * 0.4,
+      child: TabBarView(
+        physics: NeverScrollableScrollPhysics(),
+        children: <Widget>[PersonalDetails(), TrainerInfo()],
+      ),
     );
   }
 }
