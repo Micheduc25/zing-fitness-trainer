@@ -29,12 +29,17 @@ class ChatPageHome extends StatelessWidget {
       ],
       child: Container(
         constraints: BoxConstraints.expand(),
-        color: colors.skyBlue,
+        decoration: BoxDecoration(
+            color: colors.skyBlue,
+            image: DecorationImage(
+                image: AssetImage("assets/images/chatBg.png"),
+                fit: BoxFit.fill)),
         child: Stack(
           children: <Widget>[
-            ConstrainedBox(
-                constraints: BoxConstraints.expand(),
-                child: Image.asset("assets/images/chatBg.png")),
+            // Image.asset(
+            //   "assets/images/chatBg.png",
+            //   width: double.infinity,
+            // ),
 
             //the chat box to come here
             //we generate chats with a listview linked to our data in the MessageData class
