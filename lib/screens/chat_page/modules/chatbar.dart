@@ -21,7 +21,7 @@ class _ChatBarState extends State<ChatBar> {
       width: double.infinity,
       child: LayoutBuilder(
         builder: (context, constraints) => Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             ////////////////////////////////////////////////// the text input here
             Container(
@@ -52,6 +52,7 @@ class _ChatBarState extends State<ChatBar> {
             ///
             ///the send icon here
             Container(
+              margin: EdgeInsets.only(left: 5),
               decoration: BoxDecoration(
                   color: MyColors().deepBlue,
                   borderRadius: BorderRadius.all(Radius.circular(100))),
@@ -79,7 +80,7 @@ class _ChatBarState extends State<ChatBar> {
     data.addMessage({'content': message, 'time': time, 'from': from});
   }
 
-//this function puts the current time the required format for display in the speech bubbles.
+//this function puts the current time in the required format for display in the speech bubbles.
   String timeString() {
     var hour = DateTime.now().hour;
     var period = hour > 11 ? "PM" : "AM";
@@ -87,6 +88,9 @@ class _ChatBarState extends State<ChatBar> {
     var englishHour = hour % 12.floor();
     var minutes = DateTime.now().minute;
 
-    return "$englishHour:$minutes $period";
+    var minuteExtraZero = minutes < 10 ? "0" : "";
+    var hourExtraZero = englishHour < 10 ? "0" : "";
+
+    return "$hourExtraZero$englishHour:$minuteExtraZero$minutes $period";
   }
 }

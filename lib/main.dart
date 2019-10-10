@@ -8,6 +8,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
 
   Widget build(BuildContext context) {
-    return Conversations();
+    return ChatPage();
   }
 }
