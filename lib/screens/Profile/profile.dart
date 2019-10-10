@@ -50,7 +50,6 @@ class ProfilePage extends StatelessWidget {
 class ProfilePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Container(
       constraints: BoxConstraints.expand(),
       child: SingleChildScrollView(
