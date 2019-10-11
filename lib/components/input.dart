@@ -15,35 +15,34 @@ class Input_field extends StatelessWidget {
         MediaQuery.of(context).size.width / 32,
         0,
       ),
-
       width: MediaQuery.of(context).size.width -
           (MediaQuery.of(context).size.width / 7),
-
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(15)),
         color: colors.inputBlue,
       ),
-
-      child: TextField(
+      child: TextFormField(
+          validator: (value) {
+            if (value.isEmpty) {
+              return "Please fill this field";
+            }
+            return null;
+          },
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(
-                0,
-                MediaQuery.of(context).size.height/40,
-                0,
-                MediaQuery.of(context).size.height/40),
-
+                  0,
+                  MediaQuery.of(context).size.height / 40,
+                  0,
+                  MediaQuery.of(context).size.height / 40),
               alignLabelWithHint: true,
-
               icon: Icon(
                 icon,
                 size: MediaQuery.of(context).size.width / 15,
                 color: colors.deepBlue,
               ),
-
               labelText: hintText,
               labelStyle: TextStyle(color: colors.deepBlue),
               border: InputBorder.none,
-              
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20)),
                 borderSide: BorderSide(color: colors.inputBlue),

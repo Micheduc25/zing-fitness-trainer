@@ -4,7 +4,8 @@ import 'package:zing_fitnes_trainer/utils/myColors.dart';
 
 class Button extends StatelessWidget {
   final String text;
-  Button({this.text});
+  final VoidCallback onClick;
+  Button({this.text, this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -15,19 +16,16 @@ class Button extends StatelessWidget {
               (MediaQuery.of(context).size.width / 7),
           height: 50,
           child: RaisedButton(
-            child: Text(text,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                )),
-            color: colors.deepBlue,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            onPressed: () {
-              print('object');
-            },
-          )),
+              child: Text(text,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  )),
+              color: colors.deepBlue,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              onPressed: onClick)),
     );
   }
 }
