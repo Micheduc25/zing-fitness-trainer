@@ -130,13 +130,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0+1"
-  pin_code_text_field:
-    dependency: "direct main"
-    description:
-      name: pin_code_text_field
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.4.0"
   provider:
     dependency: "direct main"
     description:
