@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zing_fitnes_trainer/screens/Conversations/conversation.dart';
 import 'package:zing_fitnes_trainer/screens/Email_Verification/email_verification.dart';
 import 'package:zing_fitnes_trainer/screens/Payments/payments.dart';
-<<<<<<< HEAD
-import 'package:zing_fitnes_trainer/screens/Profile/profile.dart';
-import 'package:zing_fitnes_trainer/screens/Trainer_Info_add/trainerInfoAdd.dart';
-=======
 import 'package:zing_fitnes_trainer/screens/chat_page/chat_page.dart';
->>>>>>> 257fa43a7966ab338937933efcf75d559119e03f
 
 void main() => runApp(MyApp());
 

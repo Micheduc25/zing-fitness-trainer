@@ -93,21 +93,11 @@ class MyEmailCheckout extends StatelessWidget {
                             defaultBorderColor: Colors.transparent,
                             hasTextBorderColor: Colors.transparent,
                             maxLength: 4,
-<<<<<<< HEAD
-                            maskCharacter: "👀",
-                            pinBoxHeight: MediaQuery.of(context).size.height / 10,
-                            pinBoxWidth:MediaQuery.of(context).size.width / 5.19 ,
-                            pinBoxColor: col.inputBlue,
-                            pinBoxRadius: 10,
-                            
-
-=======
                             //maskCharacter: "👀",
                             pinBoxHeight:
                                 MediaQuery.of(context).size.height / 10,
                             pinBoxWidth:
                                 MediaQuery.of(context).size.width / 5.19,
->>>>>>> 257fa43a7966ab338937933efcf75d559119e03f
                             onTextChanged: (text) {
                               print(text);
                             },
