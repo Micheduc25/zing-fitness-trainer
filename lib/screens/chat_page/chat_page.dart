@@ -36,11 +36,6 @@ class ChatPageHome extends StatelessWidget {
                 fit: BoxFit.fill)),
         child: Stack(
           children: <Widget>[
-            // Image.asset(
-            //   "assets/images/chatBg.png",
-            //   width: double.infinity,
-            // ),
-
             //the chat box to come here
             //we generate chats with a listview linked to our data in the MessageData class
             Consumer<MessageData>(
