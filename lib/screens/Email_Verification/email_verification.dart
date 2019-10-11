@@ -96,7 +96,7 @@ class MyEmailCheckout extends StatelessWidget {
                             maxLength: 4,
                             maskCharacter: "👀",
                             pinBoxHeight: MediaQuery.of(context).size.height / 10,
-                            pinBoxWidth:MediaQuery.of(context).size.width / 5.2 ,
+                            pinBoxWidth:MediaQuery.of(context).size.width / 5.19 ,
                             
 
                             onTextChanged: (text) {
