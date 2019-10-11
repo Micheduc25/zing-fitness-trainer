@@ -83,35 +83,40 @@ class MyEmailCheckout extends StatelessWidget {
                                     MediaQuery.of(context).size.height / 70),
                           ),
 
-          //four inputs is the class holding the four white input boxes
-                        
+                          //four inputs is the class holding the four white input boxes
+
                           PinCodeTextField(
-                             autofocus: false,
-                
-                            hideCharacter: true,
+                            autofocus: false,
+                            hideCharacter: false,
                             highlight: true,
                             highlightColor: Colors.blue,
                             defaultBorderColor: Colors.transparent,
                             hasTextBorderColor: Colors.transparent,
                             maxLength: 4,
-                            maskCharacter: "👀",
-                            pinBoxHeight: MediaQuery.of(context).size.height / 10,
-                            pinBoxWidth:MediaQuery.of(context).size.width / 5.19 ,
-                            
-
+                            //maskCharacter: "👀",
+                            pinBoxHeight:
+                                MediaQuery.of(context).size.height / 10,
+                            pinBoxWidth:
+                                MediaQuery.of(context).size.width / 5.19,
                             onTextChanged: (text) {
                               print(text);
                             },
-
-                            onDone: (text){
+                            onDone: (text) {
                               print("DONE $text");
                             },
-                            pinCodeTextFieldLayoutType: PinCodeTextFieldLayoutType.AUTO_ADJUST_WIDTH,
+                            pinCodeTextFieldLayoutType:
+                                PinCodeTextFieldLayoutType.AUTO_ADJUST_WIDTH,
                             wrapAlignment: WrapAlignment.start,
-                            pinBoxDecoration: ProvidedPinBoxDecoration.defaultPinBoxDecoration,
+                            pinBoxDecoration: (r) {
+                              return BoxDecoration(
+                                  color: col.inputBlue,
+                                  borderRadius: BorderRadius.circular(15));
+                            },
                             pinTextStyle: TextStyle(fontSize: 20.0),
-                            pinTextAnimatedSwitcherTransition: ProvidedPinBoxTextAnimation.scalingTransition,
-                            pinTextAnimatedSwitcherDuration: Duration(milliseconds: 300),
+                            pinTextAnimatedSwitcherTransition:
+                                ProvidedPinBoxTextAnimation.scalingTransition,
+                            pinTextAnimatedSwitcherDuration:
+                                Duration(milliseconds: 300),
                           ),
 
                           Padding(
