@@ -36,13 +36,9 @@ class ChatPageHome extends StatelessWidget {
                 fit: BoxFit.fill)),
         child: Stack(
           children: <Widget>[
-            // Image.asset(
-            //   "assets/images/chatBg.png",
-            //   width: double.infinity,
-            // ),
-
             //the chat box to come here
             //we generate chats with a listview linked to our data in the MessageData class
+            //will be replaced with a stream builder in future
             Consumer<MessageData>(
               builder: (context, data, _) => ListView.builder(
                 itemCount: data.messagesLength,
@@ -53,6 +49,8 @@ class ChatPageHome extends StatelessWidget {
                       child:
                           //we use the bubble widget from the bubble package installed
                           Bubble(
+                        //if the message is from me, the bubble is aligned to the right of the chat screen,
+                        //else it is aligned to the left of the chat screen
                         alignment: bubbleAlign(data.getAMessage(index)["from"]),
                         radius: Radius.circular(10),
                         nip: getNipLocation(data.getAMessage(index)["from"]),
