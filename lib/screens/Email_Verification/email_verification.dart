@@ -97,6 +97,8 @@ class MyEmailCheckout extends StatelessWidget {
                             maskCharacter: "👀",
                             pinBoxHeight: MediaQuery.of(context).size.height / 10,
                             pinBoxWidth:MediaQuery.of(context).size.width / 5.19 ,
+                            pinBoxColor: col.inputBlue,
+                            pinBoxRadius: 10,
                             
 
                             onTextChanged: (text) {
