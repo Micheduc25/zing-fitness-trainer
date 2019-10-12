@@ -65,6 +65,7 @@ class _SignUpState extends State<SignUp> {
                 minWidth: 5,
                 child: FlatButton(
                   padding: EdgeInsets.all(0),
+                  onPressed: () {},
                   child: Text('Sign Up',
                       style: TextStyle(
                         color: color.deepBlue,
@@ -116,16 +117,19 @@ class _SignUpState extends State<SignUp> {
           ),
 
           Button(
-            text: 'NEXT',
-            onClick: () {
-              print("in onclick");
-              if (_formKey.currentState.validate()) {
-                print("success");
-              }
-            },
-          ),
+              text: 'NEXT',
+              onClick: () {
+                validateForm();
+              }),
         ],
       ),
     );
+  }
+
+  validateForm() {
+    print("in onclick");
+    if (_formKey.currentState.validate()) {
+      print("success");
+    }
   }
 }

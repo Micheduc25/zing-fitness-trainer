@@ -4,7 +4,10 @@ import 'package:zing_fitnes_trainer/utils/myColors.dart';
 class Input_field extends StatelessWidget {
   final IconData icon;
   final String hintText;
-  Input_field({this.icon, this.hintText});
+  final String validatorError;
+  final Function onChanged;
+
+  Input_field({this.icon, this.hintText, this.validatorError, this.onChanged});
   @override
   Widget build(BuildContext context) {
     var colors = new MyColors();
@@ -22,11 +25,12 @@ class Input_field extends StatelessWidget {
         color: colors.inputBlue,
       ),
       child: TextFormField(
+          onChanged: onChanged,
           validator: (value) {
             if (value.isEmpty) {
-              return "Please fill this field";
-            }
-            return null;
+              return validatorError;
+            } else
+              return null;
           },
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(
