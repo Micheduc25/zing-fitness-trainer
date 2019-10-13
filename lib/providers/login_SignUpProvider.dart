@@ -72,6 +72,11 @@ class LoginSignUpProvider with ChangeNotifier {
   }
 
   get readAutovalidate => autovalidate;
+
+
+  //here we manage the keyboard types for form inputs
+
+  
 }
 
 //the class temp below holds is the default content of the provider varaible _code
