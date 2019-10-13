@@ -163,7 +163,7 @@ class _SignUpState extends State<SignUp> {
       showDialog(
           context: context,
           builder: (context) => InfoDialogue(
-                title: "Login Info",
+                title: "SignUp Info",
                 values: {
                   "Trainer Name": data.readTrainerName,
                   "Email Id": data.readsignUpEmail,
