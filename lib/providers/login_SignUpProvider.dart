@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:zing_fitnes_trainer/screens/Login_SignUp/modules/Login.dart';
-import 'package:zing_fitnes_trainer/screens/Login_SignUp/modules/SignUp.dart';
 
 class LoginSignUpProvider with ChangeNotifier {
   Widget _code = Temp();
@@ -40,11 +39,11 @@ class LoginSignUpProvider with ChangeNotifier {
 
   String _signUpEmail;
   set setsignUpEmail(value) {
-    _loginEmail = value;
+    _signUpEmail = value;
     notifyListeners();
   }
 
-  get readsignUpEmail => _loginEmail;
+  get readsignUpEmail => _signUpEmail;
 
   String _signUpPass;
 
@@ -63,6 +62,16 @@ class LoginSignUpProvider with ChangeNotifier {
   }
 
   get readSignUpNumber => _signUpNumber;
+
+  //here we control autovalidation
+
+  bool autovalidate = false;
+
+  set setAutovalidate(bool value) {
+    autovalidate = value;
+  }
+
+  get readAutovalidate => autovalidate;
 }
 
 //the class temp below holds is the default content of the provider varaible _code

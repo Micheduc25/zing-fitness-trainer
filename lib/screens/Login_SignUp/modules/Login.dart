@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zing_fitnes_trainer/utils/showdialogue.dart';
 import '../../../components/button.dart';
 import '../../../components/input.dart';
 import '../../../utils/myColors.dart';
 import '../../../providers/login_SignUpProvider.dart';
 import './SignUp.dart';
+import 'package:zing_fitnes_trainer/utils/validator.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -17,8 +19,9 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    var formdata = Provider.of<LoginSignUpProvider>(context);
     return Form(
-      autovalidate: true,
+      autovalidate: formdata.readAutovalidate,
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,7 +126,10 @@ class _LoginState extends State<Login> {
                       onChanged: (value) {
                         mydata.setEmail = value;
                       },
-                      validatorError: 'no provoke me, enter your email',
+                      hide: false,
+                      validator: (value) {
+                        return Validator().emailValidator(value);
+                      },
                       icon: Icons.email,
                       hintText: 'Email id',
                     ),
@@ -134,8 +140,12 @@ class _LoginState extends State<Login> {
                       onChanged: (value) {
                         mydata.setpasssword = value;
                       },
+                      hide: true,
                       icon: Icons.lock_outline,
                       hintText: 'Password',
+                      validator: (value) {
+                        return Validator().passwordValidator(value);
+                      },
                     )
                   ],
                 ),
@@ -149,10 +159,11 @@ class _LoginState extends State<Login> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   FlatButton(
+                      onPressed: () {},
                       child: Text(
-                    'Forgot Password?',
-                    style: TextStyle(color: color.white),
-                  ))
+                        'Forgot Password?',
+                        style: TextStyle(color: color.white),
+                      ))
                 ],
               ),
 
@@ -179,58 +190,17 @@ class _LoginState extends State<Login> {
 
   validateForm(LoginSignUpProvider data) {
     if (_formKey.currentState.validate()) {
-      print("success");
       showDialog(
           context: context,
-          builder: (context) => AlertDialog(
-                backgroundColor: MyColors().skyBlue,
-                title: Text(
-                  'Login Info',
-                  style: TextStyle(color: MyColors().white),
-                ),
-                content: Container(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Text(
-                            "Email : ",
-                            style: TextStyle(color: MyColors().white),
-                          ),
-                          Text(
-                            data.readEmail,
-                            style: TextStyle(color: MyColors().white),
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Text(
-                            "Password : ",
-                            style: TextStyle(color: MyColors().white),
-                          ),
-                          Text(
-                            data.readloginPass,
-                            style: TextStyle(color: MyColors().white),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                actions: <Widget>[
-                  FlatButton(
-                    child: Text(
-                      "close",
-                      style: TextStyle(color: MyColors().white),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  )
-                ],
+          builder: (context) => InfoDialogue(
+                title: "Login Info",
+                values: {
+                  "Email Id": data.readEmail,
+                  "Password": data.readloginPass
+                },
               ));
+    } else {
+      data.setAutovalidate = true;
     }
   }
 }
