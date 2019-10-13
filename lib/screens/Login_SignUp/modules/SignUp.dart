@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zing_fitnes_trainer/utils/showdialogue.dart';
+import 'package:zing_fitnes_trainer/utils/validator.dart';
 import '../../../providers/login_SignUpProvider.dart';
 import '../../../components/button.dart';
 import '../../../components/input.dart';
@@ -17,7 +19,9 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+    var formdata = Provider.of<LoginSignUpProvider>(context);
     return Form(
+      autovalidate: formdata.readAutovalidate,
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,6 +69,7 @@ class _SignUpState extends State<SignUp> {
                 minWidth: 5,
                 child: FlatButton(
                   padding: EdgeInsets.all(0),
+                  onPressed: () {},
                   child: Text('Sign Up',
                       style: TextStyle(
                         color: color.deepBlue,
@@ -80,47 +85,94 @@ class _SignUpState extends State<SignUp> {
             padding: EdgeInsets.all(10),
           ),
 /////////
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Input_field(
-                icon: Icons.perm_identity,
-                hintText: 'Trainer name',
-              ),
-              Padding(
-                padding: EdgeInsets.all(7),
-              ),
-              Input_field(
-                icon: Icons.lock_outline,
-                hintText: 'Email id',
-              ),
-              Padding(
-                padding: EdgeInsets.all(7),
-              ),
-              Input_field(
-                icon: Icons.phone_iphone,
-                hintText: 'Mobile number',
-              ),
-              Padding(
-                padding: EdgeInsets.all(7),
-              ),
-              Input_field(
-                icon: Icons.lock_outline,
-                hintText: 'Password',
-              )
-            ],
+          Consumer<LoginSignUpProvider>(
+            builder: (context, data, _) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Input_field(
+                    icon: Icons.perm_identity,
+                    hintText: 'Trainer name',
+                    validator: (value) {
+                      return Validator().textValidator(value);
+                    },
+                    onChanged: (value) {
+                      data.setTrainerName = value;
+                    },
+                    hide: false),
+                Padding(
+                  padding: EdgeInsets.all(7),
+                ),
+                Input_field(
+                    icon: Icons.lock_outline,
+                    hintText: 'Email id',
+                    validator: (value) {
+                      return Validator().emailValidator(value);
+                    },
+                    onChanged: (value) {
+                      data.setsignUpEmail = value;
+                    },
+                    hide: false),
+                Padding(
+                  padding: EdgeInsets.all(7),
+                ),
+                Input_field(
+                    icon: Icons.phone_iphone,
+                    hintText: 'Mobile number',
+                    validator: (value) {
+                      return Validator().textValidator(value);
+                    },
+                    onChanged: (value) {
+                      data.setsignUpNumber = value;
+                    },
+                    hide: false),
+                Padding(
+                  padding: EdgeInsets.all(7),
+                ),
+                Input_field(
+                    icon: Icons.lock_outline,
+                    hintText: 'Password',
+                    validator: (value) {
+                      return Validator().passwordValidator(value);
+                    },
+                    onChanged: (value) {
+                      data.setsignUppasssword = value;
+                    },
+                    hide: true)
+              ],
+            ),
           ),
 
           Padding(
             padding: EdgeInsets.all(10),
           ),
 
-          Button(
-            text: 'NEXT',
-            formKey: _formKey,
+          Consumer<LoginSignUpProvider>(
+            builder: (context, data, _) => Button(
+                text: 'NEXT',
+                onClick: () {
+                  validateForm(data);
+                }),
           ),
         ],
       ),
     );
+  }
+
+  validateForm(LoginSignUpProvider data) {
+    if (_formKey.currentState.validate()) {
+      showDialog(
+          context: context,
+          builder: (context) => InfoDialogue(
+                title: "Login Info",
+                values: {
+                  "Trainer Name": data.readTrainerName,
+                  "Email Id": data.readsignUpEmail,
+                  "Mobile Number": data.readSignUpNumber,
+                  "Password": data.readSignUpPassword
+                },
+              ));
+    } else {
+      data.setAutovalidate = true;
+    }
   }
 }
