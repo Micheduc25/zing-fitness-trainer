@@ -117,12 +117,7 @@ class _SignUpState extends State<SignUp> {
 
           Button(
             text: 'NEXT',
-            onClick: () {
-              print("in onclick");
-              if (_formKey.currentState.validate()) {
-                print("success");
-              }
-            },
+            formKey: _formKey,
           ),
         ],
       ),

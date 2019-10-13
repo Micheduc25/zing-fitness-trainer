@@ -5,7 +5,8 @@ import 'package:zing_fitnes_trainer/utils/myColors.dart';
 class Button extends StatelessWidget {
   final String text;
   final VoidCallback onClick;
-  Button({this.text, this.onClick});
+  final GlobalKey<FormState> formKey;
+  Button({this.text, this.onClick, this.formKey});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,12 @@ class Button extends StatelessWidget {
               color: colors.deepBlue,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
-              onPressed: onClick)),
+              onPressed:() {
+              print("in onclick");
+              if (formKey.currentState.validate()) {
+                print("success");
+              }
+            },)),
     );
   }
 }

@@ -91,6 +91,9 @@ class TrainerInfoAddHome extends StatelessWidget{
                         
                         child: DateTimePickerFormField(
                           inputType: InputType.both,
+                          onChanged: (t){print(t);},
+                        
+
                           editable: false,
                           resetIcon: null,
                       
