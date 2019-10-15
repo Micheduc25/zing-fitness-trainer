@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zing_fitnes_trainer/components/passwordInput.dart';
 import 'package:zing_fitnes_trainer/utils/showdialogue.dart';
 import 'package:zing_fitnes_trainer/utils/validator.dart';
 import '../../../providers/login_SignUpProvider.dart';
@@ -128,7 +129,7 @@ class _SignUpState extends State<SignUp> {
                 Padding(
                   padding: EdgeInsets.all(7),
                 ),
-                Input_field(
+                PasswordInputfield(
                     icon: Icons.lock_outline,
                     hintText: 'Password',
                     validator: (value) {
@@ -137,7 +138,7 @@ class _SignUpState extends State<SignUp> {
                     onChanged: (value) {
                       data.setsignUppasssword = value;
                     },
-                    hide: true)
+                )
               ],
             ),
           ),

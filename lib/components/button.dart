@@ -26,12 +26,7 @@ class Button extends StatelessWidget {
               color: colors.deepBlue,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
-              onPressed:() {
-              print("in onclick");
-              if (formKey.currentState.validate()) {
-                print("success");
-              }
-            },)),
+              onPressed:onClick,)),
     );
   }
 }
