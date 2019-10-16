@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:zing_fitnes_trainer/components/button.dart';
 import 'package:zing_fitnes_trainer/components/footBg.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
@@ -82,8 +83,41 @@ class MyEmailCheckout extends StatelessWidget {
                                     MediaQuery.of(context).size.height / 70),
                           ),
 
-//four inputs is the class holding the four white input boxes
-                          FourInputs(),
+                          //four inputs is the class holding the four white input boxes
+
+                          PinCodeTextField(
+                            autofocus: false,
+                            hideCharacter: false,
+                            highlight: true,
+                            highlightColor: Colors.blue,
+                            defaultBorderColor: Colors.transparent,
+                            hasTextBorderColor: Colors.transparent,
+                            maxLength: 4,
+                            //maskCharacter: "👀",
+                            pinBoxHeight:
+                                MediaQuery.of(context).size.height / 10,
+                            pinBoxWidth:
+                                MediaQuery.of(context).size.width / 5.19,
+                            onTextChanged: (text) {
+                              print(text);
+                            },
+                            onDone: (text) {
+                              print("DONE $text");
+                            },
+                            pinCodeTextFieldLayoutType:
+                                PinCodeTextFieldLayoutType.AUTO_ADJUST_WIDTH,
+                            wrapAlignment: WrapAlignment.start,
+                            pinBoxDecoration: (r) {
+                              return BoxDecoration(
+                                  color: col.inputBlue,
+                                  borderRadius: BorderRadius.circular(15));
+                            },
+                            pinTextStyle: TextStyle(fontSize: 20.0),
+                            pinTextAnimatedSwitcherTransition:
+                                ProvidedPinBoxTextAnimation.scalingTransition,
+                            pinTextAnimatedSwitcherDuration:
+                                Duration(milliseconds: 300),
+                          ),
 
                           Padding(
                             padding: EdgeInsets.symmetric(
@@ -112,7 +146,7 @@ class MyEmailCheckout extends StatelessWidget {
   }
 }
 
-class FourInputs extends StatelessWidget {
+/*class FourInputs extends StatelessWidget {
   final col = MyColors();
   @override
   Widget build(BuildContext context) {
@@ -186,4 +220,4 @@ class FourInputs extends StatelessWidget {
       ],
     );
   }
-}
+}*/

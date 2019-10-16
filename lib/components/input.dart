@@ -4,7 +4,12 @@ import 'package:zing_fitnes_trainer/utils/myColors.dart';
 class Input_field extends StatelessWidget {
   final IconData icon;
   final String hintText;
-  Input_field({this.icon, this.hintText});
+  final String Function(String) validator;
+  final Function onChanged;
+  final bool hide;
+
+  Input_field(
+      {this.icon, this.hintText, this.validator, this.onChanged, this.hide});
   @override
   Widget build(BuildContext context) {
     var colors = new MyColors();
@@ -15,36 +20,36 @@ class Input_field extends StatelessWidget {
         MediaQuery.of(context).size.width / 32,
         0,
       ),
-
       width: MediaQuery.of(context).size.width -
           (MediaQuery.of(context).size.width / 7),
-
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(15)),
         color: colors.inputBlue,
       ),
 
-      child: TextField(
+
+
+
+      child: TextFormField(
+          onChanged: onChanged,
+          validator: validator,
+          obscureText: this.hide,
 
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(
-                0,
-                MediaQuery.of(context).size.height/40,
-                0,
-                MediaQuery.of(context).size.height/40),
-
+                  0,
+                  MediaQuery.of(context).size.height / 40,
+                  0,
+                  MediaQuery.of(context).size.height / 40),
               alignLabelWithHint: true,
-
               icon: Icon(
                 icon,
                 size: MediaQuery.of(context).size.width / 15,
                 color: colors.deepBlue,
               ),
-
               labelText: hintText,
               labelStyle: TextStyle(color: colors.deepBlue),
               border: InputBorder.none,
-              
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20)),
                 borderSide: BorderSide(color: colors.inputBlue),
