@@ -25,6 +25,7 @@ class Input_field extends StatelessWidget {
       ),
 
       child: TextField(
+
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(
                 0,

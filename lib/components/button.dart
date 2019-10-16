@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:zing_fitnes_trainer/screens/Trainer_Info_add/trainerInfoAdd.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
 
 class Button extends StatelessWidget {
@@ -25,7 +26,15 @@ class Button extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             onPressed: () {
-              print('object');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+
+                    builder: (context) =>TrainerInfoAdd()
+
+                ),
+              );
+
             },
           )),
     );

@@ -1,4 +1,3 @@
-import 'dart:ui' as prefix0;
 
 import 'package:flutter/material.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';

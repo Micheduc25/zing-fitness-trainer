@@ -106,6 +106,7 @@ class SignUp extends StatelessWidget {
         ),
 
         Button(
+
           text: 'NEXT',
         ),
       ],
