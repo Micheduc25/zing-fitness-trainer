@@ -15,6 +15,8 @@ class Config{
   static final String address = "address";
   static final String userId = "userId";
   static final String email = "email";
+  static final String loginMsg = "Login Successfull";
+
 
   static final String profilePicUrl = "profilePicUrl";
   static final String streetAddress = "streetAddress";
