@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:zing_fitnes_trainer/screens/Trainer_Info_add/trainerInfoAdd.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
 
 class Button extends StatelessWidget {
@@ -17,6 +18,9 @@ class Button extends StatelessWidget {
               (MediaQuery.of(context).size.width / 7),
           height: 50,
           child: RaisedButton(
+
+
+
               child: Text(text,
                   style: TextStyle(
                     color: Colors.white,
@@ -27,6 +31,7 @@ class Button extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               onPressed:onClick,)),
+
     );
   }
 }

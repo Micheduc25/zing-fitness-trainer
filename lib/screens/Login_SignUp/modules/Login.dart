@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zing_fitnes_trainer/components/passwordInput.dart';
+import 'package:zing_fitnes_trainer/utils/Config.dart';
+import 'package:zing_fitnes_trainer/utils/authentication.dart';
 import 'package:zing_fitnes_trainer/utils/showdialogue.dart';
 import '../../../components/button.dart';
 import '../../../components/input.dart';
@@ -17,7 +19,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   final color = MyColors();
-
+  var userAuth =  UserAuth();
+  bool _loading = false;
   @override
   Widget build(BuildContext context) {
     var formdata = Provider.of<LoginSignUpProvider>(context);
@@ -172,6 +175,10 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.all(3),
               ),
 
+              _loading?
+              Center(
+                child: CircularProgressIndicator(valueColor:AlwaysStoppedAnimation<Color>(Colors.white),),
+              ) :
               Consumer<LoginSignUpProvider>(
                 builder: (context, data, child) => Button(
                     text: 'LOGIN',
@@ -191,6 +198,35 @@ class _LoginState extends State<Login> {
 
   validateForm(LoginSignUpProvider data) {
     if (_formKey.currentState.validate()) {
+
+
+
+      setState(() {
+        _loading = true;
+      });
+      UserData userData = UserData(
+          email: data.readEmail,password: data.readloginPass);
+      userAuth.verifyUser(userData).then((value){
+        print("result is"+value);
+        setState(() {
+          _loading = false;
+        });
+        if(value == Config.loginMsg){
+
+          print("login was successfull");
+        }
+
+      }).catchError((Object onError) {
+        //    showInSnackBar(AppLocalizations.of(context).emailExist);
+        //  showInSnackBar(onError.toString());
+        print(onError.toString());
+        setState(() {
+          _loading = false;
+        });
+      });
+
+      /*
+
       showDialog(
           context: context,
           builder: (context) => InfoDialogue(
@@ -200,6 +236,8 @@ class _LoginState extends State<Login> {
                   "Password": data.readloginPass
                 },
               ));
+
+      */
     } else {
       data.setAutovalidate = true;
     }

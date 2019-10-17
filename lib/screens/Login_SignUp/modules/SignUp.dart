@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zing_fitnes_trainer/components/passwordInput.dart';
+import 'package:zing_fitnes_trainer/utils/authentication.dart';
 import 'package:zing_fitnes_trainer/utils/showdialogue.dart';
 import 'package:zing_fitnes_trainer/utils/validator.dart';
 import '../../../providers/login_SignUpProvider.dart';
@@ -17,6 +18,9 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
   final color = MyColors();
+  bool _loading = false;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  var userAuth =  UserAuth();
 
   @override
   Widget build(BuildContext context) {
@@ -147,20 +151,66 @@ class _SignUpState extends State<SignUp> {
             padding: EdgeInsets.all(10),
           ),
 
-          Consumer<LoginSignUpProvider>(
+
+
+         _loading?
+             Center(
+               child: CircularProgressIndicator(valueColor:AlwaysStoppedAnimation<Color>(Colors.white),),
+             ) :
+         Consumer<LoginSignUpProvider>(
             builder: (context, data, _) => Button(
                 text: 'NEXT',
                 onClick: () {
-                  validateForm(data);
+                  validateForm(data,formdata);
                 }),
           ),
         ],
       ),
+
     );
   }
 
-  validateForm(LoginSignUpProvider data) {
+  void showInSnackBar(String value) {
+    _scaffoldKey.currentState.showSnackBar(new SnackBar(
+      content: new Text(
+        value,
+        textAlign: TextAlign.center,
+        style: TextStyle( fontSize: 20.0),
+      ),
+      backgroundColor: Theme.of(context).accentColor,
+    ));
+  }
+
+  validateForm(LoginSignUpProvider data,LoginSignUpProvider formData) {
     if (_formKey.currentState.validate()) {
+
+      setState(() {
+         _loading = true;
+      });
+      UserData userData = UserData(displayName: data.readTrainerName,
+      email: data.readsignUpEmail,password: data.readSignUpPassword);
+
+      userAuth.createUser(userData).then((value){
+        print("value is "+value);
+        formData.saveUserData(data.readSignUpNumber, data.readTrainerName).then((_){
+          print("successfully saved to DB");
+          setState(() {
+            _loading = false;
+          });
+        });
+
+
+      }).catchError((Object onError) {
+        //    showInSnackBar(AppLocalizations.of(context).emailExist);
+      //  showInSnackBar(onError.toString());
+        print(onError.toString());
+        setState(() {
+          _loading = false;
+        });
+      });
+
+
+      /*
       showDialog(
           context: context,
           builder: (context) => InfoDialogue(
@@ -172,6 +222,8 @@ class _SignUpState extends State<SignUp> {
                   "Password": data.readSignUpPassword
                 },
               ));
+
+      */
     } else {
       data.setAutovalidate = true;
     }

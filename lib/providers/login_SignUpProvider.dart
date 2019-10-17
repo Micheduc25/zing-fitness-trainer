@@ -1,8 +1,72 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:zing_fitnes_trainer/screens/Login_SignUp/modules/Login.dart';
+import 'package:zing_fitnes_trainer/utils/Config.dart';
+
+
+
+
 
 class LoginSignUpProvider with ChangeNotifier {
+
+  Firestore _firestore;
+  //FirebaseStorage storage;
+
+  FirebaseAuth firebaseAuth;
+
+
+  LoginSignUpProvider.instance():
+      _firestore = Firestore.instance,
+      firebaseAuth = FirebaseAuth.instance;
+
+
+
+  Future<void> saveUserData(String phoneNumber,String fullNames){
+    Future<FirebaseUser> user = firebaseAuth.currentUser();
+    return user.then((FirebaseUser firebaseUser){
+
+      print("user id is dollar " +firebaseUser.uid );
+
+      var map =  Map<String, dynamic>();
+      map[Config.userId] = firebaseUser.uid;
+      map[Config.email] = firebaseUser.email;
+      map[Config.phone] = phoneNumber;
+      map[Config.fullNames] = fullNames;
+
+
+
+      map[Config.admin] = false;
+
+
+
+     // map[Config.notificationToken] = fcmToken;
+      map[Config.createdOn] = FieldValue.serverTimestamp();
+      _firestore.collection(Config.users)
+          .document(firebaseUser.uid)
+          .setData(map,merge: true)
+
+          .then((_) {
+
+
+        //save uid
+       // print(value.toString());
+     //   _saveUid(firebaseUser.uid);
+        print("User Successfully registered");
+
+      });
+
+
+    });
+  }
+
+
+
+
+
+
   Widget _code = Temp();
+
 
   set changeCode(value) {
     _code = value;
