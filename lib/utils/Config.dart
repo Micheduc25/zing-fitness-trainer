@@ -109,6 +109,12 @@ class Config{
   static final String profileVideoUrl = "videoUrl";
   static final String thumbnailUrl = "thumbnailUrl";
 
+  static final String userType = "userType";
+  static final String regularUser = "regularUser";
+  static final String trainer = "trainer";
+
+
+
 
   static final String tokens = "tokens";
   static final String tokenId = "tokenId";

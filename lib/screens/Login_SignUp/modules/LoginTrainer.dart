@@ -8,15 +8,15 @@ import '../../../components/button.dart';
 import '../../../components/input.dart';
 import '../../../utils/myColors.dart';
 import '../../../providers/login_SignUpProvider.dart';
-import './SignUp.dart';
+import './SignUpTrainer.dart';
 import 'package:zing_fitnes_trainer/utils/validator.dart';
 
-class Login extends StatefulWidget {
+class LoginTrainer extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _LoginTrainerState createState() => _LoginTrainerState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginTrainerState extends State<LoginTrainer> {
   final _formKey = GlobalKey<FormState>();
   final color = MyColors();
   var userAuth =  UserAuth();
@@ -70,9 +70,9 @@ class _LoginState extends State<Login> {
                               style: TextStyle(
                                   color: color.deepBlue, fontSize: 22)),
                           onPressed: () {
-                            data.changeCode = Column(
+                            data.changeCodeTrainer = Column(
                               children: <Widget>[
-                                SignUp(),
+                                SignUpTrainer(),
                                 Padding(padding: EdgeInsets.all(2)
                                     // padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height/500),
                                     )

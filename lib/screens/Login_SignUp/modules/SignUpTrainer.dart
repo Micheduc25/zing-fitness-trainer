@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zing_fitnes_trainer/components/passwordInput.dart';
+import 'package:zing_fitnes_trainer/screens/Login_SignUp/modules/LoginTrainer.dart';
+import 'package:zing_fitnes_trainer/utils/Config.dart';
 import 'package:zing_fitnes_trainer/utils/authentication.dart';
 import 'package:zing_fitnes_trainer/utils/showdialogue.dart';
 import 'package:zing_fitnes_trainer/utils/validator.dart';
@@ -8,19 +10,31 @@ import '../../../providers/login_SignUpProvider.dart';
 import '../../../components/button.dart';
 import '../../../components/input.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
-import './Login.dart';
-
-class SignUp extends StatefulWidget {
+import './LoginRegular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+class SignUpTrainer extends StatefulWidget {
   @override
-  _SignUpState createState() => _SignUpState();
+  _SignUpTrainerState createState() => _SignUpTrainerState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignUpTrainerState extends State<SignUpTrainer> {
   final _formKey = GlobalKey<FormState>();
   final color = MyColors();
   bool _loading = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   var userAuth =  UserAuth();
+  String userType;
+
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +63,9 @@ class _SignUpState extends State<SignUp> {
                               fontSize: 22,
                               fontWeight: FontWeight.w500)),
                       onPressed: () {
-                        data.changeCode = Column(
+                        data.changeCodeTrainer = Column(
                           children: <Widget>[
-                            Login(),
+                            LoginTrainer(),
                             Padding(
                               padding: EdgeInsets.symmetric(
                                   vertical:
@@ -192,7 +206,7 @@ class _SignUpState extends State<SignUp> {
 
       userAuth.createUser(userData).then((value){
         print("value is "+value);
-        formData.saveUserData(data.readSignUpNumber, data.readTrainerName).then((_){
+        formData.saveUserData(data.readSignUpNumber, data.readTrainerName,Config.trainer).then((_){
           print("successfully saved to DB");
           setState(() {
             _loading = false;
