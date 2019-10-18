@@ -26,10 +26,15 @@ class Input_field extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(15)),
         color: colors.inputBlue,
       ),
+
+
+
+
       child: TextFormField(
           onChanged: onChanged,
           validator: validator,
           obscureText: this.hide,
+
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(
                   0,

@@ -113,6 +113,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.0+9"
+<<<<<<< HEAD
   firebase_storage:
     dependency: "direct main"
     description:
@@ -120,6 +121,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.6"
+=======
+  firebase_messaging:
+    dependency: "direct main"
+    description:
+      name: firebase_messaging
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.1.6"
+>>>>>>> 5a6cf7821d1f287f971e8e9ae6602ac9a593ed79
   flutter:
     dependency: "direct main"
     description: flutter

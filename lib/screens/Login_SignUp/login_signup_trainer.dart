@@ -4,10 +4,15 @@ import '../../providers/login_SignUpProvider.dart';
 import '../../components/footBg.dart';
 import '../../utils/myColors.dart';
 
-class LoginSignUP extends StatelessWidget {
+
+
+
+class LoginSignUpTrainer extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MyLoginSignUp(),
     );
   }
@@ -18,8 +23,14 @@ class MyLoginSignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+
+
+           
+
       body: Container(
           height: MediaQuery.of(context).size.height,
+
           color: col.skyBlue,
           child: ListView(
             children: <Widget>[
@@ -71,12 +82,12 @@ class MyLoginSignUp extends StatelessWidget {
                                 MultiProvider(
                                   providers: [
                                     ChangeNotifierProvider(
-                                      builder: (_) => LoginSignUpProvider(),
+                                      builder: (_) => LoginSignUpProvider.instance(),
                                     ),
                                   ],
                                   child: Consumer<LoginSignUpProvider>(
                                       builder: (context, data, child) =>
-                                          data.showCode),
+                                          data.showCodeTrainer),
                                 )
                               ],
                             ),
@@ -89,7 +100,16 @@ class MyLoginSignUp extends StatelessWidget {
                 ],
               )
             ],
-          )),
-    );
+
+
+          ),
+
+
+          )
+        );
+      
+      
+
+
   }
 }
