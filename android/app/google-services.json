@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "292456708912",
+    "firebase_url": "https://zing-c5b81.firebaseio.com",
+    "project_id": "zing-c5b81",
+    "storage_bucket": "zing-c5b81.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292456708912:android:39f4e1e3c03cbca802e6f5",
+        "android_client_info": {
+          "package_name": "app.zing.com.zing_fitnes_trainer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292456708912-1n8cbchj4buat2hj5ajc5id8f0fm2af1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTIU6NRDzZ_CPeBl9wztX8Qp3TRhKHzP8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292456708912-1n8cbchj4buat2hj5ajc5id8f0fm2af1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
