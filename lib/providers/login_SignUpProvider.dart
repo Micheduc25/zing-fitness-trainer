@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
-import 'package:zing_fitnes_trainer/screens/Login_SignUp/modules/Login.dart';
+import 'package:zing_fitnes_trainer/screens/Login_SignUp/modules/LoginRegular.dart';
+import 'package:zing_fitnes_trainer/screens/Login_SignUp/modules/LoginTrainer.dart';
 import 'package:zing_fitnes_trainer/utils/Config.dart';
 
 
@@ -65,15 +66,7 @@ class LoginSignUpProvider with ChangeNotifier {
 
 
 
-  Widget _code = Temp();
 
-
-  set changeCode(value) {
-    _code = value;
-    notifyListeners();
-  }
-
-  get showCode => _code;
 
   String _loginEmail;
   set setEmail(value) {
@@ -140,18 +133,65 @@ class LoginSignUpProvider with ChangeNotifier {
 
   //here we manage the keyboard types for form inputs
 
-  
+
+
+  //
+  //here is the section for the regular user
+  //
+
+  Widget _codeRegular = TempRegular();
+
+
+  set changeCodeRegular(value) {
+    _codeRegular = value;
+    notifyListeners();
+  }
+
+  get showCodeRegular => _codeRegular;
+
+
+
+
+  //
+  //here is the trainer section
+  //
+
+  Widget _codeTrainer = TempTrainer();
+
+
+  set changeCodeTrainer(value) {
+    _codeTrainer = value;
+    notifyListeners();
+  }
+
+  get showCodeTrainer => _codeTrainer;
 }
 
 //the class temp below holds is the default content of the provider varaible _code
 //the main reason for creating the class is so that we can use the media query to get the screen height
 //we can't just use it directly because it must be inside a context
-class Temp extends StatelessWidget {
+class TempRegular extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Login(),
+        LoginRegular(),
+        Padding(
+          padding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).size.height / 30),
+        )
+      ],
+    );
+  }
+}
+
+
+class TempTrainer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        LoginTrainer(),
         Padding(
           padding: EdgeInsets.symmetric(
               vertical: MediaQuery.of(context).size.height / 30),

@@ -7,7 +7,7 @@ import '../../utils/myColors.dart';
 
 
 
-class LoginSignUP extends StatelessWidget {
+class LoginSignUpRegular extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +87,7 @@ class MyLoginSignUp extends StatelessWidget {
                                   ],
                                   child: Consumer<LoginSignUpProvider>(
                                       builder: (context, data, child) =>
-                                          data.showCode),
+                                          data.showCodeRegular),
                                 )
                               ],
                             ),

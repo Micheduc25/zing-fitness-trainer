@@ -8,14 +8,14 @@ import '../../../providers/login_SignUpProvider.dart';
 import '../../../components/button.dart';
 import '../../../components/input.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
-import './Login.dart';
+import './LoginRegular.dart';
 
-class SignUp extends StatefulWidget {
+class SignUpRegular extends StatefulWidget {
   @override
-  _SignUpState createState() => _SignUpState();
+  _SignUpRegularState createState() => _SignUpRegularState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignUpRegularState extends State<SignUpRegular> {
   final _formKey = GlobalKey<FormState>();
   final color = MyColors();
   bool _loading = false;
@@ -49,9 +49,9 @@ class _SignUpState extends State<SignUp> {
                               fontSize: 22,
                               fontWeight: FontWeight.w500)),
                       onPressed: () {
-                        data.changeCode = Column(
+                        data.changeCodeRegular = Column(
                           children: <Widget>[
-                            Login(),
+                            LoginRegular(),
                             Padding(
                               padding: EdgeInsets.symmetric(
                                   vertical:
@@ -96,7 +96,7 @@ class _SignUpState extends State<SignUp> {
               children: <Widget>[
                 Input_field(
                     icon: Icons.perm_identity,
-                    hintText: 'Trainer name',
+                    hintText: 'user name',
                     validator: (value) {
                       return Validator().textValidator(value);
                     },

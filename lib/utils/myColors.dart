@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 class MyColors {
-  Color deepBlue = new Color(0xff2f00ad);
+  Color deepBlue = Color(0xff2f00ad);
 
-  Color skyBlue = new Color(0xff01b6ff);
+  Color skyBlue =  Color(0xff01b6ff);
 
-  Color gray = new Color(0xffeae5f7);
+  Color gray =  Color(0xffeae5f7);
 
-  Color inputBlue = new Color(0xff6bd4ff);
+  Color inputBlue =  Color(0xff6bd4ff);
 
-  Color textBlack = new Color(0xff333333);
+  Color textBlack = Color(0xff333333);
 
-  Color notificationRed = new Color(0xffff1e00);
+  Color notificationRed = Color(0xffff1e00);
   Color white = new Color(0xffffffffff);
   Color chatBlue = new Color(0xff01a1e1);
   Color inputWhite = Colors.white70;

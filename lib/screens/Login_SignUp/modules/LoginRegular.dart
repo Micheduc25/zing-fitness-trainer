@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zing_fitnes_trainer/components/passwordInput.dart';
+import 'package:zing_fitnes_trainer/screens/Login_SignUp/modules/SignUpRegular.dart';
 import 'package:zing_fitnes_trainer/utils/Config.dart';
 import 'package:zing_fitnes_trainer/utils/authentication.dart';
 import 'package:zing_fitnes_trainer/utils/showdialogue.dart';
@@ -8,15 +9,15 @@ import '../../../components/button.dart';
 import '../../../components/input.dart';
 import '../../../utils/myColors.dart';
 import '../../../providers/login_SignUpProvider.dart';
-import './SignUp.dart';
+import './SignUpTrainer.dart';
 import 'package:zing_fitnes_trainer/utils/validator.dart';
 
-class Login extends StatefulWidget {
+class LoginRegular extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _LoginRegularState createState() => _LoginRegularState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginRegularState extends State<LoginRegular> {
   final _formKey = GlobalKey<FormState>();
   final color = MyColors();
   var userAuth =  UserAuth();
@@ -70,9 +71,9 @@ class _LoginState extends State<Login> {
                               style: TextStyle(
                                   color: color.deepBlue, fontSize: 22)),
                           onPressed: () {
-                            data.changeCode = Column(
+                            data.changeCodeRegular = Column(
                               children: <Widget>[
-                                SignUp(),
+                                SignUpRegular(),
                                 Padding(padding: EdgeInsets.all(2)
                                     // padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height/500),
                                     )
