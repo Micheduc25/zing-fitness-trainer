@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zing_fitnes_trainer/components/passwordInput.dart';
+import 'package:zing_fitnes_trainer/utils/Config.dart';
 import 'package:zing_fitnes_trainer/utils/authentication.dart';
 import 'package:zing_fitnes_trainer/utils/showdialogue.dart';
 import 'package:zing_fitnes_trainer/utils/validator.dart';
@@ -21,6 +22,7 @@ class _SignUpRegularState extends State<SignUpRegular> {
   bool _loading = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   var userAuth =  UserAuth();
+
 
   @override
   Widget build(BuildContext context) {
@@ -192,8 +194,8 @@ class _SignUpRegularState extends State<SignUpRegular> {
 
       userAuth.createUser(userData).then((value){
         print("value is "+value);
-        formData.saveUserData(data.readSignUpNumber, data.readTrainerName).then((_){
-          print("successfully saved to DB");
+        formData.saveUserData(data.readSignUpNumber, data.readTrainerName,Config.regularUser).then((somevalue){
+          print(somevalue);
           setState(() {
             _loading = false;
           });

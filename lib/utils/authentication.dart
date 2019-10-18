@@ -42,6 +42,12 @@ class UserAuth {
     return Config.loginMsg;
   }
 
+  Future<String> forgotPassword(String email) async{
+    FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+    await firebaseAuth.sendPasswordResetEmail(email: email);
+    return "Email Sent";
+  }
+
   Future<Null> getUser() async {
     FirebaseAuth firebaseAuth = FirebaseAuth.instance;
     Future<FirebaseUser> user = firebaseAuth.currentUser();

@@ -208,13 +208,21 @@ class _LoginRegularState extends State<LoginRegular> {
       UserData userData = UserData(
           email: data.readEmail,password: data.readloginPass);
       userAuth.verifyUser(userData).then((value){
-        print("result is"+value);
-        setState(() {
-          _loading = false;
-        });
+
+
+
         if(value == Config.loginMsg){
 
-          print("login was successfull");
+
+          print("result is"+value);
+          setState(() {
+            _loading = false;
+          });
+
+          data.login().then((value){
+            print("login is == "+value);
+          });
+
         }
 
       }).catchError((Object onError) {

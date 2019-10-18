@@ -9,6 +9,7 @@ import '../../utils/myColors.dart';
 
 class LoginSignUpRegular extends StatelessWidget {
 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

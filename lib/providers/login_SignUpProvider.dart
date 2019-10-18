@@ -22,18 +22,44 @@ class LoginSignUpProvider with ChangeNotifier {
       firebaseAuth = FirebaseAuth.instance;
 
 
-
-  Future<void> saveUserData(String phoneNumber,String fullNames){
+  Future<String> login(){
     Future<FirebaseUser> user = firebaseAuth.currentUser();
-    return user.then((FirebaseUser firebaseUser){
+    return user.then((FirebaseUser firebaseUser) async {
+       if(firebaseUser.isEmailVerified)
+         {
+           return firebaseUser.uid;
+         }else
+           {
+             return "Please Verify Your Email Address";
+           }
+
+
+    });
+  }
+
+
+  Future<String> saveUserData(String phoneNumber,String fullNames,String userType){
+    Future<FirebaseUser> user = firebaseAuth.currentUser();
+    return user.then((FirebaseUser firebaseUser) async {
 
       print("user id is dollar " +firebaseUser.uid );
+      try {
+        await firebaseUser.sendEmailVerification();
+        return firebaseUser.uid;
+      } catch (e) {
+        print("An error occured while trying to send email verification");
+        print(e.message);
+      }
 
+      return "An Error Occured";
+
+/*
       var map =  Map<String, dynamic>();
       map[Config.userId] = firebaseUser.uid;
       map[Config.email] = firebaseUser.email;
       map[Config.phone] = phoneNumber;
       map[Config.fullNames] = fullNames;
+      map[Config.userType] = userType;
 
 
 
@@ -57,7 +83,7 @@ class LoginSignUpProvider with ChangeNotifier {
 
       });
 
-
+*/
     });
   }
 

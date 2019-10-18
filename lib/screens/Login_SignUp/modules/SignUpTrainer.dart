@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zing_fitnes_trainer/components/passwordInput.dart';
 import 'package:zing_fitnes_trainer/screens/Login_SignUp/modules/LoginTrainer.dart';
+import 'package:zing_fitnes_trainer/utils/Config.dart';
 import 'package:zing_fitnes_trainer/utils/authentication.dart';
 import 'package:zing_fitnes_trainer/utils/showdialogue.dart';
 import 'package:zing_fitnes_trainer/utils/validator.dart';
@@ -10,7 +11,7 @@ import '../../../components/button.dart';
 import '../../../components/input.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
 import './LoginRegular.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 class SignUpTrainer extends StatefulWidget {
   @override
   _SignUpTrainerState createState() => _SignUpTrainerState();
@@ -22,6 +23,18 @@ class _SignUpTrainerState extends State<SignUpTrainer> {
   bool _loading = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   var userAuth =  UserAuth();
+  String userType;
+
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -193,7 +206,7 @@ class _SignUpTrainerState extends State<SignUpTrainer> {
 
       userAuth.createUser(userData).then((value){
         print("value is "+value);
-        formData.saveUserData(data.readSignUpNumber, data.readTrainerName).then((_){
+        formData.saveUserData(data.readSignUpNumber, data.readTrainerName,Config.trainer).then((_){
           print("successfully saved to DB");
           setState(() {
             _loading = false;
