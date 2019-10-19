@@ -45,6 +45,31 @@ class LoginSignUpProvider with ChangeNotifier {
       print("user id is dollar " +firebaseUser.uid );
       try {
         await firebaseUser.sendEmailVerification();
+
+        var map =  Map<String, dynamic>();
+        map[Config.userId] = firebaseUser.uid;
+        map[Config.email] = firebaseUser.email;
+        map[Config.phone] = phoneNumber;
+        map[Config.fullNames] = fullNames;
+        map[Config.userType] = userType;
+
+
+
+        map[Config.admin] = false;
+
+
+
+        // map[Config.notificationToken] = fcmToken;
+        map[Config.createdOn] = FieldValue.serverTimestamp();
+        _firestore.collection(Config.users)
+            .document(firebaseUser.uid)
+            .setData(map,merge: true)
+
+            .then((_) {
+
+
+        });
+
         return firebaseUser.uid;
       } catch (e) {
         print("An error occured while trying to send email verification");
@@ -53,40 +78,23 @@ class LoginSignUpProvider with ChangeNotifier {
 
       return "An Error Occured";
 
-/*
-      var map =  Map<String, dynamic>();
-      map[Config.userId] = firebaseUser.uid;
-      map[Config.email] = firebaseUser.email;
-      map[Config.phone] = phoneNumber;
-      map[Config.fullNames] = fullNames;
-      map[Config.userType] = userType;
 
 
 
-      map[Config.admin] = false;
-
-
-
-     // map[Config.notificationToken] = fcmToken;
-      map[Config.createdOn] = FieldValue.serverTimestamp();
-      _firestore.collection(Config.users)
-          .document(firebaseUser.uid)
-          .setData(map,merge: true)
-
-          .then((_) {
-
-
-        //save uid
-       // print(value.toString());
-     //   _saveUid(firebaseUser.uid);
-        print("User Successfully registered");
-
-      });
-
-*/
     });
   }
 
+
+  Future<String> loginUser(){
+    Future<FirebaseUser> user = firebaseAuth.currentUser();
+    return user.then((FirebaseUser firebaseUser) async {
+
+
+      return firebaseUser.uid;
+
+
+    });
+  }
 
 
 

@@ -4,13 +4,10 @@ import 'package:zing_fitnes_trainer/components/MyDrawer.dart';
 import 'package:zing_fitnes_trainer/components/button.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/pFootbg.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/profileInputField.dart';
-import 'package:zing_fitnes_trainer/screens/Profile/modules/profileTabBar.dart';
-import 'package:zing_fitnes_trainer/screens/Profile/modules/profileup.dart';
-import 'package:zing_fitnes_trainer/screens/Profile/views/tabBarviews.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
 import 'package:zing_fitnes_trainer/utils/validator.dart';
 
-class EditRegularUserProfile extends StatelessWidget {
+class EditProfileRegular extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

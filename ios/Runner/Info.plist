@@ -14,6 +14,13 @@
 	<string>zing_fitnes_trainer</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>$(PRODUCT_NAME) would like to access your camera. Your photos wont be shared without your permission</string>
+    <key>NSCameraUsageDescription</key>
+    <string>$(PRODUCT_NAME) would like to access your photo gallery for your profile photo upload. Your photos wont be shared without your permission</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>$(PRODUCT_NAME) would like to access your microphone when recording videos. Your video wont be shared without your permission</string>
+
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>

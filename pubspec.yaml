@@ -32,6 +32,7 @@ dependencies:
   image_picker: ^0.6.0+17
   cached_network_image: ^1.1.1
   streaming_shared_preferences: ^1.0.0
+  firebase_storage: ^3.0.6
 
   firebase_messaging: ^5.1.2
 
