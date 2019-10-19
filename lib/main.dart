@@ -8,6 +8,9 @@ import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 import 'package:zing_fitnes_trainer/screens/Login_SignUp/login_signup_regular.dart';
 
 import 'package:zing_fitnes_trainer/screens/Conversations/conversation.dart';
+import 'package:zing_fitnes_trainer/screens/Profile/EditProfileRegular.dart';
+import 'package:zing_fitnes_trainer/screens/Profile/editTrainerProfile.dart';
+import 'package:zing_fitnes_trainer/screens/Profile/profileRegular.dart';
 import 'package:zing_fitnes_trainer/screens/bookings_active/bookings_active.dart';
 
 
@@ -36,7 +39,8 @@ Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   final preferences = await StreamingSharedPreferences.instance;
   final settings = AppSettings(preferences);
-  runApp(App(settings));
+  //runApp(App(settings));
+  runApp( EditTrainerProfile());
 }
 
 class App extends StatelessWidget {

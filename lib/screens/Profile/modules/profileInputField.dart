@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
 
-class Input_field extends StatelessWidget {
+class ProfileInputField extends StatelessWidget {
   final IconData icon;
   final String hintText;
   final String Function(String) validator;
   final Function onChanged;
-  final bool hide;
+  final String initialValue;
 
-  Input_field(
-      {this.icon, this.hintText, this.validator, this.onChanged, this.hide});
+  ProfileInputField(
+      {this.icon, this.hintText, this.validator, this.onChanged, this.initialValue});
   @override
   Widget build(BuildContext context) {
     var colors = new MyColors();
@@ -33,7 +33,7 @@ class Input_field extends StatelessWidget {
       child: TextFormField(
           onChanged: onChanged,
           validator: validator,
-          obscureText: this.hide,
+          initialValue: initialValue,
 
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(

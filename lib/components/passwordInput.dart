@@ -26,7 +26,7 @@ class _PasswordInputfieldState extends State<PasswordInputfield> {
         Container(
           padding: EdgeInsets.fromLTRB(
             MediaQuery.of(context).size.width / 30,
-            0,
+            5,
             MediaQuery.of(context).size.width / 32,
             0,
           ),
