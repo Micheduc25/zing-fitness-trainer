@@ -184,6 +184,13 @@ class _LoginTrainerState extends State<LoginTrainer> {
                     text: 'LOGIN',
                     onClick: () {
                       validateForm(data);
+                      
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                        backgroundColor: Theme.of(context).primaryColor,
+                        content: Text('Button moved to separate widget'),
+                        duration: Duration(seconds: 3),
+                      ));
+
                     }),
               )
               //

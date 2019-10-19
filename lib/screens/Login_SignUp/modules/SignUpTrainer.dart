@@ -176,6 +176,9 @@ class _SignUpTrainerState extends State<SignUpTrainer> {
                 text: 'NEXT',
                 onClick: () {
                   validateForm(data,formdata);
+
+                  
+
                 }),
           ),
         ],
@@ -211,6 +214,13 @@ class _SignUpTrainerState extends State<SignUpTrainer> {
           setState(() {
             _loading = false;
           });
+          Scaffold.of(context).showSnackBar(SnackBar(
+            backgroundColor: Theme.of(context).primaryColor,
+            content: Text('A link has been sent to your email address please confirm'),
+            duration: Duration(seconds: 3),
+          ));
+
+          
         });
 
 

@@ -8,7 +8,7 @@ import '../../utils/myColors.dart';
 
 
 class LoginSignUpRegular extends StatelessWidget {
-
+  
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,12 @@ class LoginSignUpRegular extends StatelessWidget {
 }
 
 class MyLoginSignUp extends StatelessWidget {
+  
   final col = MyColors();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    
 
 
 

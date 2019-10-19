@@ -185,6 +185,13 @@ class _LoginRegularState extends State<LoginRegular> {
                     text: 'LOGIN',
                     onClick: () {
                       validateForm(data);
+
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                        backgroundColor: Theme.of(context).primaryColor,
+                        content: Text('Button moved to separate widget'),
+                        duration: Duration(seconds: 3),
+                      ));
+
                     }),
               )
               //
@@ -223,6 +230,12 @@ class _LoginRegularState extends State<LoginRegular> {
             print("login is == "+value);
           });
 
+        }else{
+          Scaffold.of(context).showSnackBar(SnackBar(
+            backgroundColor: Theme.of(context).primaryColor,
+            content: Text('The information entered does not match any account, very and try again'),
+            duration: Duration(seconds: 3),
+          ));
         }
 
       }).catchError((Object onError) {

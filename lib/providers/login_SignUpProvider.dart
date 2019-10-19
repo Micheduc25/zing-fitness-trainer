@@ -158,7 +158,7 @@ class LoginSignUpProvider with ChangeNotifier {
 
 
   //here we manage the keyboard types for form inputs
-
+  
 
 
   //
