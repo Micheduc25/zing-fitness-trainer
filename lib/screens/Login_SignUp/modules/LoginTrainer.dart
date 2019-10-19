@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zing_fitnes_trainer/components/passwordInput.dart';
+import 'package:zing_fitnes_trainer/providers/profile_provider.dart';
+import 'package:zing_fitnes_trainer/screens/Profile/editProfileTrainer.dart';
 import 'package:zing_fitnes_trainer/utils/Config.dart';
 import 'package:zing_fitnes_trainer/utils/authentication.dart';
 import 'package:zing_fitnes_trainer/utils/showdialogue.dart';
@@ -220,8 +223,37 @@ class _LoginTrainerState extends State<LoginTrainer> {
         });
         if(value == Config.loginMsg){
 
-          print("login was successfull");
-        }
+          data.login().then((firebaseUserId){
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context){
+                    return StreamProvider.value(value: ProfileProvider.instance().streamSingleUserProfile(firebaseUserId),
+                      catchError: (context,error){
+                        print(error);
+                      },
+                      child: EditProfileTrainer(userId: firebaseUserId,),);
+                  }
+              ),
+            );
+            print("login was successfull");
+
+          });
+
+
+
+
+        }else
+          {
+            Scaffold.of(context).showSnackBar(SnackBar(
+              backgroundColor: Theme.of(context).primaryColor,
+              content: Text('The information entered does not match any account, very and try again'),
+              duration: Duration(seconds: 3),
+            ));
+
+
+          }
 
       }).catchError((Object onError) {
         //    showInSnackBar(AppLocalizations.of(context).emailExist);

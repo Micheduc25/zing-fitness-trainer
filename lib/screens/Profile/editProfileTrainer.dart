@@ -1,80 +1,174 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:zing_fitnes_trainer/components/MyDrawer.dart';
 import 'package:zing_fitnes_trainer/components/button.dart';
+import 'package:zing_fitnes_trainer/providers/profile_provider.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/pFootbg.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/profileInputField.dart';
+import 'package:zing_fitnes_trainer/screens/Profile/profile_model.dart';
+import 'package:zing_fitnes_trainer/utils/Config.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
 import 'package:zing_fitnes_trainer/utils/validator.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 
-class EditTrainerProfile extends StatelessWidget {
+class EditProfileTrainer extends StatelessWidget {
+  EditProfileTrainer({this.userId});
+  final String userId;
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: "Profile page",
-        home: Scaffold(
-          drawer: MyDrawer(),
-          appBar: AppBar(
-            elevation: 0.0,
-            iconTheme: IconThemeData(color: MyColors().deepBlue, size: 40),
-            backgroundColor: MyColors().skyBlue,
-            title: Center(
-              child: Text(
-                "Profile",
-                style: TextStyle(
-                    color: MyColors().deepBlue,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w900),
-              ),
+    var profileModel = Provider.of<ProfileModel>(context);
+    return profileModel == null ? Scaffold(
+      appBar: AppBar(
+        title: Text("Edit Profile"),
+      ),
+    ) :
+    Scaffold(
+
+        appBar: AppBar(
+          elevation: 0.0,
+          iconTheme: IconThemeData(color: MyColors().deepBlue, size: 40),
+          backgroundColor: MyColors().skyBlue,
+          title: Center(
+            child: Text(
+              "Profile",
+              style: TextStyle(
+                  color: MyColors().deepBlue,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w900),
             ),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(Icons.power_settings_new,color: MyColors().deepBlue),
-              )
-            ],
           ),
 
-
-          body:EditTrainer()
-        ));
-  }
-}
-
-
-
-class EditTrainer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: MyColors().skyBlue,
-      height: MediaQuery.of(context).size.height,
-      child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Center(
-              child:CircleAvatar(
-              radius: 40,
-              )
-            ),
-
-            Padding(padding: EdgeInsets.only(top:MediaQuery.of(context).size.height/50)),
-
-            FormSection(),
-
-          ],
         ),
-      ),
+
+
+        body:Container(
+          color: MyColors().skyBlue,
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+
+                FormSection(userId,profileModel),
+
+              ],
+            ),
+          ),
+        )
     );
   }
 }
 
 
+
+
+
+
 class FormSection extends StatefulWidget {
+     FormSection(this.userId,this.profileModel);
+     final String userId;
+     final ProfileModel profileModel;
+
   @override
   _FormSectionState createState() => _FormSectionState();
 }
 
 class _FormSectionState extends State<FormSection> {
+
   final GlobalKey<FormState>_regularFormKey = GlobalKey<FormState>();
+
+  File file;
+  var targetPath;
+  Future<File> _imageFile;
+  String profilePic;
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+
+  }
+
+
+
+  void _onImageButtonPressed(ImageSource source) async {
+
+    setState(() {
+      _imageFile = ImagePicker.pickImage(source: source);
+
+    });
+
+  }
+
+  Future<File> compressAndGetFile(File file, String targetPath) async {
+    var result = await FlutterImageCompress.compressAndGetFile(
+      file.absolute.path, targetPath,
+      quality: 88,
+
+    );
+
+    print(file.path);
+    print(result.path);
+
+    print(file.lengthSync());
+    print(result.lengthSync());
+
+    return result;
+  }
+
+
+  Widget _previewImage() {
+    return FutureBuilder<File>(
+        future: _imageFile,
+        builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
+          if (snapshot.connectionState == ConnectionState.done &&
+              snapshot.data != null) {
+            file = snapshot.data;
+            print("image file "+snapshot.data.toString());
+            return InkWell(
+              onTap: () => _onImageButtonPressed(ImageSource.gallery),
+              child:  Container(
+                  padding: EdgeInsets.all(10),
+                  width: 100,
+
+                  height: 100,
+                  child: ClipOval(child: Image.file(snapshot.data,fit: BoxFit.cover,))
+              ),
+            );
+          } else if (snapshot.error != null) {
+            //  showInSnackBar("Error Picking Image");
+
+            return InkWell(
+              onTap: () {
+                _onImageButtonPressed(ImageSource.gallery);
+              },
+              child: Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.all(10.0),
+                child: Icon(Icons.account_circle,size: 100,),
+              ),
+            );
+          } else {
+            //  showInSnackBar("You have not yet picked an image.");
+            return InkWell(
+              onTap: () {
+                _onImageButtonPressed(ImageSource.gallery);
+              },
+              child: Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.all(10.0),
+                child: Icon(Icons.account_circle,size: 100,),
+              ),
+            );
+          }
+        });
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -90,17 +184,14 @@ class _FormSectionState extends State<FormSection> {
                mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                ProfileInputField(
-                  hintText: 'Trianer-name',
-                  icon: Icons.account_circle,
-                  validator: (value){return Validator().textValidator(value);},
-                ),
+               _previewImage(),
 
                 Padding(padding: EdgeInsets.only(top:MediaQuery.of(context).size.height/50)),
 
                 ProfileInputField(
                   hintText: 'Mobile number',
                   icon: Icons.phone_iphone,
+
                   validator: (value){return null;},
                 ),
 
@@ -154,7 +245,39 @@ class _FormSectionState extends State<FormSection> {
 
               Button(
                 text:'Update' ,
-                onClick: (){print('hi');},
+                onClick: () async{
+                  if(file != null)
+    {
+
+
+    var dir = await path_provider.getTemporaryDirectory();
+    var targetPath = dir.absolute.path + "/temp.png";
+
+    print("file image is" + file.path);
+    compressAndGetFile(file, targetPath).then((File result) {
+    print("result is" + result.path);
+
+    ProfileProvider.instance().uploadImage(result).then((value){
+
+    Map userData = Map<String,dynamic>();
+
+    userData[Config.profilePicUrl] = value;
+    userData[Config.phone]= "324974234";
+
+
+    ProfileProvider.instance().saveUserData(widget.userId, userData).then((_){
+    print("successfull");
+    });
+
+    });
+    });
+
+    }}
+
+
+
+
+
               ),
 
               
