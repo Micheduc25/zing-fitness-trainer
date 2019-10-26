@@ -4,6 +4,7 @@ import 'package:zing_fitnes_trainer/components/MyDrawer.dart';
 import 'package:zing_fitnes_trainer/components/button.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/pFootbg.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/profileInputField.dart';
+import 'package:zing_fitnes_trainer/screens/Profile/modules/row_text_input.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
 import 'package:zing_fitnes_trainer/utils/validator.dart';
 
@@ -155,34 +156,6 @@ class _FormSectionState extends State<FormSection> {
           )
         ));
   }
-}
-
-
-///
-/// This class containers a row and a textfield input
-///
-class RowTextInput extends StatelessWidget{
-  final String label;
-  final String initialValue;
-  RowTextInput({this.label, this.initialValue});
-  @override
-  Widget build(BuildContext context)=>
-      Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            Text(label+ ' '),
-            SizedBox(
-              width: MediaQuery.of(context).size.width/4,
-              child: TextFormField(
-                initialValue: initialValue,
-                //keyboardType: TextInputType.numberWithOptions(),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(bottom: 0)
-                ),
-              ),
-            )
-          ],
-        );
 }
 
 
