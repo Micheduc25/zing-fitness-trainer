@@ -233,7 +233,7 @@ class _LoginRegularState extends State<LoginRegular> {
         }else{
           Scaffold.of(context).showSnackBar(SnackBar(
             backgroundColor: Theme.of(context).primaryColor,
-            content: Text('The information entered does not match any account, very and try again'),
+            content: Text('The information entered does not match any account, verify and try again'),
             duration: Duration(seconds: 3),
           ));
         }
