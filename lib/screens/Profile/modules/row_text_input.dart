@@ -37,7 +37,7 @@ class RowTextInputForRate extends StatelessWidget {
   final String Function (String) validator;
   void Function (String) onChanged;
   final String initialValue;
-  RowTextInputForRate({this.label, this.initialValue, this.validator});
+  RowTextInputForRate({this.label, this.initialValue, this.validator, this.onChanged});
   @override
   Widget build(BuildContext context) => Row(
         crossAxisAlignment: CrossAxisAlignment.end,

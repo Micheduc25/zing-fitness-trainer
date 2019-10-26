@@ -71,6 +71,11 @@ class FormSection extends StatefulWidget {
 
 class _FormSectionState extends State<FormSection> {
   final GlobalKey<FormState> _regularFormKey = GlobalKey<FormState>();
+  String phoneNumber;
+  String serviceArea;
+  String experience;
+  String sessionRate;
+  String specialty;
 
   File file;
   var targetPath;
@@ -163,132 +168,151 @@ class _FormSectionState extends State<FormSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        alignment: Alignment.topLeft,
-        child: SingleChildScrollView(
-            child: Form(
-                key: _regularFormKey,
-                child: Center(
-                  child: Column(
+      alignment: Alignment.topLeft,
+      child: SingleChildScrollView(
+        child: Form(
+          key: _regularFormKey,
+          child: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _previewImage(),
+
+                  Padding(
+                      padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 50)),
+
+                  ProfileInputField(
+                    hintText: 'Mobile number',
+                    icon: Icons.phone_iphone,
+                    validator: (value) {
+                      return null;
+                    },
+                    onChanged: (value) {
+                      phoneNumber = value;
+                    },
+                  ),
+
+                  Padding(
+                      padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 50)),
+///////////
+                  /// as from here is the trainer info on the design sheet
+///////////
+                  ProfileInfoInput(
+                    labelText: 'Certificates',
+                    icon: Icons.add_circle,
+                  ),
+
+                  Padding(
+                      padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 50)),
+
+                  ProfileInfoInput(
+                    labelText: 'Service area',
+                    onChanged: (value) {
+                      serviceArea = value;
+                    },
+                  ),
+
+                  Padding(
+                      padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 50)),
+
+                  Container(
+                    width: MediaQuery.of(context).size.width -
+                        (MediaQuery.of(context).size.width / 7),
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        _previewImage(),
-
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Text('Experience'),
+                            Flexible(
+                              child: SliderRangeInput(
+                                sliderValue: 5,
+                                onChanged: (value) {
+                                  experience = value.toString();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
                         Padding(
-                            padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height / 50)),
-
-                        ProfileInputField(
-                          hintText: 'Mobile number',
-                          icon: Icons.phone_iphone,
-                          validator: (value) {
-                            return null;
+                          padding: EdgeInsets.only(
+                              top: MediaQuery.of(context).size.height / 50),
+                        ),
+                        RowTextInputForRate(
+                          label: 'Session Rate',
+                          onChanged: (value) {
+                            sessionRate = value;
                           },
                         ),
+                      ],
+                    ),
+                  ),
 
-                        Padding(
-                            padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height / 50)),
-///////////
-                        /// as from here is the trainer info on the design sheet
-///////////
-                        ProfileInfoInput(
-                          labelText: 'Certificates',
-                          icon: Icons.add_circle,
-                        ),
+                  Padding(
+                      padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 50)),
 
-                        Padding(
-                            padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height / 50)),
+                  ProfileInfoInput(
+                    labelText: 'Specialty',
+                    onChanged: (value){specialty=value;},
+                  ),
 
-                        ProfileInfoInput(
-                          labelText: 'Service area',
-                        ),
+                  Padding(
+                      padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 50)),
 
-                        Padding(
-                            padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height / 50)),
+                  //Notes(hintText:'Notes'),
 
-                        Container(
-                          width: MediaQuery.of(context).size.width -
-                              (MediaQuery.of(context).size.width / 7),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Text('Experience'),
-                                  Flexible(child: SliderRangeInput()),
-                                ],
-                              ),
+                  Padding(
+                      padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 50)),
 
-                              Padding(
-                                  padding: EdgeInsets.only(
-                                      top: MediaQuery.of(context).size.height /
-                                          50),),
-                              RowTextInputForRate(label: 'Session Rate'),
-                            ],
-                          ),
-                        ),
+                  Button(
+                      text: 'Update',
+                      onClick: () async {
+                        if (file != null) {
+                          var dir = await path_provider.getTemporaryDirectory();
+                          var targetPath = dir.absolute.path + "/temp.png";
 
-                        Padding(
-                            padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height / 50)),
+                          print("file image is" + file.path);
+                          compressAndGetFile(file, targetPath)
+                              .then((File result) {
+                            print("result is" + result.path);
 
-                        ProfileInfoInput(
-                          labelText: 'Specialty',
-                        ),
+                            ProfileProvider.instance()
+                                .uploadImage(result)
+                                .then((value) {
+                              Map userData = Map<String, dynamic>();
 
-                        Padding(
-                            padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height / 50)),
+                              userData[Config.profilePicUrl] = value;
+                              userData[Config.phone] = "324974234";
 
-                        //Notes(hintText:'Notes'),
+                              ProfileProvider.instance()
+                                  .saveUserData(widget.userId, userData)
+                                  .then((_) {
+                                print("successfull");
+                              });
+                            });
+                          });
+                        }
+                      }),
 
-                        Padding(
-                            padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height / 50)),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height / 15),
+                  ),
 
-                        Button(
-                            text: 'Update',
-                            onClick: () async {
-                              if (file != null) {
-                                var dir =
-                                    await path_provider.getTemporaryDirectory();
-                                var targetPath =
-                                    dir.absolute.path + "/temp.png";
-
-                                print("file image is" + file.path);
-                                compressAndGetFile(file, targetPath)
-                                    .then((File result) {
-                                  print("result is" + result.path);
-
-                                  ProfileProvider.instance()
-                                      .uploadImage(result)
-                                      .then((value) {
-                                    Map userData = Map<String, dynamic>();
-
-                                    userData[Config.profilePicUrl] = value;
-                                    userData[Config.phone] = "324974234";
-
-                                    ProfileProvider.instance()
-                                        .saveUserData(widget.userId, userData)
-                                        .then((_) {
-                                      print("successfull");
-                                    });
-                                  });
-                                });
-                              }
-                            }),
-
-                        Padding(
-                            padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height / 15),),
-
-                        FootBgr()
-                      ]),
-                ),),),);
+                  FootBgr()
+                ]),
+          ),
+        ),
+      ),
+    );
   }
 }
-

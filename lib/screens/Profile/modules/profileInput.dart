@@ -6,8 +6,13 @@ class ProfileInfoInput extends StatelessWidget {
   final IconData icon;
   final initialValue;
   final Function() onClick;
- ProfileInfoInput(
-      {this.labelText, this.icon, this.initialValue, this.onClick});
+  void Function(String) onChanged;
+  ProfileInfoInput(
+      {this.labelText,
+      this.icon,
+      this.initialValue,
+      this.onClick,
+      this.onChanged});
   final colors = MyColors();
   @override
   Widget build(BuildContext context) {
@@ -26,9 +31,7 @@ class ProfileInfoInput extends StatelessWidget {
       ),
       child: TextFormField(
           initialValue: initialValue,
-          onChanged: (value) {
-            print(value);
-          },
+          onChanged: onChanged,
           validator: (value) {
             return null;
           },
@@ -51,9 +54,7 @@ class ProfileInfoInput extends StatelessWidget {
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20)),
                 borderSide: BorderSide(color: colors.inputBlue),
-              )
-            )
-          ),
+              ))),
     );
   }
 }
