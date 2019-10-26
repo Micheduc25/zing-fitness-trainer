@@ -20,7 +20,7 @@ class LoginRegular extends StatefulWidget {
 class _LoginRegularState extends State<LoginRegular> {
   final _formKey = GlobalKey<FormState>();
   final color = MyColors();
-  var userAuth =  UserAuth();
+  var userAuth = UserAuth();
   bool _loading = false;
   @override
   Widget build(BuildContext context) {
@@ -141,11 +141,10 @@ class _LoginRegularState extends State<LoginRegular> {
                     Padding(
                       padding: EdgeInsets.all(7),
                     ),
-                   PasswordInputfield(
+                    PasswordInputfield(
                       onChanged: (value) {
                         mydata.setpasssword = value;
                       },
-                      
                       icon: Icons.lock_outline,
                       hintText: 'Password',
                       validator: (value) {
@@ -176,24 +175,25 @@ class _LoginRegularState extends State<LoginRegular> {
                 padding: EdgeInsets.all(3),
               ),
 
-              _loading?
-              Center(
-                child: CircularProgressIndicator(valueColor:AlwaysStoppedAnimation<Color>(Colors.white),),
-              ) :
-              Consumer<LoginSignUpProvider>(
-                builder: (context, data, child) => Button(
-                    text: 'LOGIN',
-                    onClick: () {
-                      validateForm(data);
+              _loading
+                  ? Center(
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      ),
+                    )
+                  : Consumer<LoginSignUpProvider>(
+                      builder: (context, data, child) => Button(
+                          text: 'LOGIN',
+                          onClick: () {
+                            validateForm(data);
 
-                      Scaffold.of(context).showSnackBar(SnackBar(
-                        backgroundColor: Theme.of(context).primaryColor,
-                        content: Text('Button moved to separate widget'),
-                        duration: Duration(seconds: 3),
-                      ));
-
-                    }),
-              )
+                            Scaffold.of(context).showSnackBar(SnackBar(
+                              backgroundColor: Theme.of(context).primaryColor,
+                              content: Text('Button moved to separate widget'),
+                              duration: Duration(seconds: 3),
+                            ));
+                          }),
+                    )
               //
               //this is the second child of the inner column and it contains two inputfields
               //
@@ -206,38 +206,29 @@ class _LoginRegularState extends State<LoginRegular> {
 
   validateForm(LoginSignUpProvider data) {
     if (_formKey.currentState.validate()) {
-
-
-
       setState(() {
         _loading = true;
       });
-      UserData userData = UserData(
-          email: data.readEmail,password: data.readloginPass);
-      userAuth.verifyUser(userData).then((value){
-
-
-
-        if(value == Config.loginMsg){
-
-
-          print("result is"+value);
+      UserData userData =
+          UserData(email: data.readEmail, password: data.readloginPass);
+      userAuth.verifyUser(userData).then((value) {
+        if (value == Config.loginMsg) {
+          print("result is" + value);
           setState(() {
             _loading = false;
           });
 
-          data.login().then((value){
-            print("login is == "+value);
+          data.login().then((value) {
+            print("login is == " + value);
           });
-
-        }else{
+        } else {
           Scaffold.of(context).showSnackBar(SnackBar(
             backgroundColor: Theme.of(context).primaryColor,
-            content: Text('The information entered does not match any account, verify and try again'),
+            content: Text(
+                'The information entered does not match any account, verify and try again'),
             duration: Duration(seconds: 3),
           ));
         }
-
       }).catchError((Object onError) {
         //    showInSnackBar(AppLocalizations.of(context).emailExist);
         //  showInSnackBar(onError.toString());
