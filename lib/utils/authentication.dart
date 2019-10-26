@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:zing_fitnes_trainer/utils/Config.dart';
 
-
 final auth = FirebaseAuth.instance;
 
 class UserData {
@@ -20,7 +19,6 @@ class UserAuth {
   //To create new User
   Future<String> createUser(UserData userData) async {
     FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-
 
     await firebaseAuth.createUserWithEmailAndPassword(
         email: userData.email, password: userData.password);
@@ -42,7 +40,7 @@ class UserAuth {
     return Config.loginMsg;
   }
 
-  Future<String> forgotPassword(String email) async{
+  Future<String> forgotPassword(String email) async {
     FirebaseAuth firebaseAuth = FirebaseAuth.instance;
     await firebaseAuth.sendPasswordResetEmail(email: email);
     return "Email Sent";
@@ -58,5 +56,3 @@ class UserAuth {
 }
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
-
-
