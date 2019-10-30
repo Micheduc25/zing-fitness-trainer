@@ -52,26 +52,24 @@ class ProfilePageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints.expand(),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: <Widget>[
-                  ProfileUp(),
-                  ProfileTabBar(),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8),
-                  ),
-                  MyViews()
-                ],
-              ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: <Widget>[
+                ProfileUp(),
+                ProfileTabBar(),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8),
+                ),
+                MyViews()
+              ],
             ),
-            FootBgr(),
-          ],
-        ),
+          ),
+          FootBgr(),
+        ],
       ),
     );
   }
