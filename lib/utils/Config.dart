@@ -15,6 +15,10 @@ class Config{
   static final String address = "address";
   static final String userId = "userId";
   static final String email = "email";
+  static final String height = "height";
+  static final String weight = "weight";
+  static final String age= "age";
+  static final String location= "location";
   static final String loginMsg = "Login Successfull";
 
 
@@ -125,6 +129,13 @@ class Config{
 
 
   static final String created = "created";
+  static final String sessionRate = "sessionRate";
+  static final String speciality = "speciality";
+  static final String certName = "certName";
+  static final String certId = "certId";
+  static final String certUrl = "certUrl";
+  static final String certificates = "certificates";
+  static final String userCertificates = "userCertificates";
   static final String notificationToken = "notificationToken";
 
 
@@ -132,6 +143,8 @@ class Config{
 
 
   static final String country= "country";
+  static final String experience= "experience";
+  static final String serviceArea= "serviceArea";
   static final String interestedActivities= "interestedActivities";
 
 

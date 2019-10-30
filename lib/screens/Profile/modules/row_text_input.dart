@@ -5,8 +5,9 @@ class RowTextInput extends StatelessWidget {
   final String label;
   final String Function (String) validator;
   void Function (String) onChanged;
+  final TextEditingController controller;
   final String initialValue;
-  RowTextInput({this.label, this.initialValue, this.validator});
+  RowTextInput({this.label, this.initialValue, this.validator,this.controller});
   @override
   Widget build(BuildContext context) => Row(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -17,15 +18,18 @@ class RowTextInput extends StatelessWidget {
               )),
           SizedBox(
             width: MediaQuery.of(context).size.width / 4,
+
+
             child: TextFormField(
               validator: validator,
               onChanged: onChanged,
               initialValue: initialValue,
+              controller: controller,
               //keyboardType: TextInputType.numberWithOptions(),
               decoration: InputDecoration(
                   fillColor: MyColors().inputBlue,
                   filled: true,
-                  contentPadding: EdgeInsets.only(bottom: 0, top: 5)),
+                  contentPadding: EdgeInsets.only(bottom: 10, top: 10)),
             ),
           )
         ],

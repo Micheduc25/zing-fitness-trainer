@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+
 import 'package:flutter/material.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
 
@@ -51,16 +51,15 @@ class ChatItem extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: Badge(
-              badgeContent: Text(
+            child: Text(
                 this.noMsg.toString(),
                 style: TextStyle(
                     color: MyColors().deepBlue,
                     fontSize: 13,
                     fontWeight: FontWeight.w900),
               ),
-              badgeColor: MyColors().gray,
-            ),
+
+
           )
         ],
       ),

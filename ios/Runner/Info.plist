@@ -20,7 +20,11 @@
     <string>$(PRODUCT_NAME) would like to access your photo gallery for your profile photo upload. Your photos wont be shared without your permission</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>$(PRODUCT_NAME) would like to access your microphone when recording videos. Your video wont be shared without your permission</string>
-
+    <key>UIBackgroundModes</key>
+    <array>
+    <string>fetch</string>
+    <string>remote-notification</string>
+    </array>
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
