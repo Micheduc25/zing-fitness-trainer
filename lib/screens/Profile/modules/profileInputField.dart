@@ -7,9 +7,10 @@ class ProfileInputField extends StatelessWidget {
   final String Function(String) validator;
   final Function onChanged;
   final String initialValue;
+  final TextEditingController controller;
 
   ProfileInputField(
-      {this.icon, this.hintText, this.validator, this.onChanged, this.initialValue});
+      {this.icon,this.controller, this.hintText, this.validator, this.onChanged, this.initialValue});
   @override
   Widget build(BuildContext context) {
     var colors = new MyColors();
@@ -34,6 +35,7 @@ class ProfileInputField extends StatelessWidget {
           onChanged: onChanged,
           validator: validator,
           initialValue: initialValue,
+          controller: controller,
 
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(

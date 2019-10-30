@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+
 import 'package:flutter/material.dart';
 import 'package:zing_fitnes_trainer/components/MyDrawer.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/pFootbg.dart';
@@ -10,10 +10,8 @@ import 'package:zing_fitnes_trainer/utils/myColors.dart';
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: "Profile page",
-        home: Scaffold(
-          drawer: MyDrawer(),
+    return Scaffold(
+
           appBar: AppBar(
             elevation: 0.0,
             iconTheme: IconThemeData(color: MyColors().deepBlue, size: 40),
@@ -27,23 +25,10 @@ class ProfilePage extends StatelessWidget {
                     fontWeight: FontWeight.w900),
               ),
             ),
-            actions: <Widget>[
-              Badge(
-                padding: EdgeInsets.all(2),
-                badgeColor: MyColors().notificationRed,
-                badgeContent: Text(" "),
-                position: BadgePosition(top: 10, right: 15),
-                child: IconButton(
-                  icon: Icon(Icons.notifications_none),
-                  onPressed: () {
-                    print("hello");
-                  },
-                ),
-              )
-            ],
+
           ),
           body: DefaultTabController(length: 2, child: ProfilePageBody()),
-        ));
+        );
   }
 }
 

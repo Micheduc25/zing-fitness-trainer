@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zing_fitnes_trainer/components/passwordInput.dart';
+import 'package:zing_fitnes_trainer/providers/profile_provider.dart';
 import 'package:zing_fitnes_trainer/screens/Login_SignUp/modules/SignUpRegular.dart';
+import 'package:zing_fitnes_trainer/screens/Profile/edit_profile_regular.dart';
 import 'package:zing_fitnes_trainer/utils/Config.dart';
 import 'package:zing_fitnes_trainer/utils/authentication.dart';
 import 'package:zing_fitnes_trainer/utils/showdialogue.dart';
@@ -219,6 +221,23 @@ class _LoginRegularState extends State<LoginRegular> {
           });
 
           data.login().then((value) {
+/*
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return StreamProvider.value(
+                  value: ProfileProvider.instance()
+                      .streamRegularUserProfile(value),
+                  catchError: (context, error) {
+                    print(error);
+                  },
+                  child: EditProfileRegular(
+                    userId: value,
+                  ),
+                );
+              }),
+            );
+            */
             print("login is == " + value);
           });
         } else {
