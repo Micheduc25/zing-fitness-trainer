@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +12,13 @@ import 'package:zing_fitnes_trainer/components/button.dart';
 import 'package:zing_fitnes_trainer/providers/profile_provider.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/certificate_model.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/pFootbg.dart';
-import 'package:zing_fitnes_trainer/screens/Profile/modules/profileInput.dart';
+
 import 'package:zing_fitnes_trainer/screens/Profile/modules/profileInputField.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/row_text_input.dart';
-import 'package:zing_fitnes_trainer/screens/Profile/modules/slider_range_input.dart';
+
 import 'package:zing_fitnes_trainer/screens/Profile/modules/user_certificate_model.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/trainer_profile_model.dart';
+
 import 'package:zing_fitnes_trainer/utils/Config.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
 
@@ -24,8 +26,9 @@ import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:zing_fitnes_trainer/utils/validator.dart';
 
 class EditProfileTrainer extends StatelessWidget {
-  EditProfileTrainer({this.userId});
+  EditProfileTrainer({this.userId,this.trainerProfileModel});
   final String userId;
+  final TrainerProfileModel trainerProfileModel;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +55,7 @@ class EditProfileTrainer extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
-                    FormSection(userId),
+                    FormSection(userId,trainerProfileModel),
                   ],
                 ),
               ),
@@ -61,8 +64,9 @@ class EditProfileTrainer extends StatelessWidget {
 }
 
 class FormSection extends StatefulWidget {
-  FormSection(this.userId);
+  FormSection(this.userId,this.profileModel);
   final String userId;
+  final TrainerProfileModel profileModel;
 
 
   @override
@@ -130,6 +134,7 @@ class _FormSectionState extends State<FormSection> {
 
           userData[Config.certName] = _fileName;
           userData[Config.certUrl] = value;
+          userData[Config.userId] = widget.userId;
           userData[Config.createdOn] = FieldValue.serverTimestamp();
 
 
@@ -149,6 +154,38 @@ class _FormSectionState extends State<FormSection> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    setState(() {
+      profilePic = widget.profileModel.profilePicUrl;
+      userNameController.text = widget.profileModel.name;
+      phoneController.text = widget.profileModel.phoneNumber;
+      heightController.text = widget.profileModel.height;
+      ageController.text = widget.profileModel.age;
+      weightController.text = widget.profileModel.weight;
+      locationController.text = widget.profileModel.location;
+      specialityController.text = widget.profileModel.speciality;
+      sessionRateController.text = widget.profileModel.sessionRate;
+
+
+
+    });
+
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+
+    userNameController.dispose();
+    locationController.dispose();
+    phoneController.dispose();
+    heightController.dispose();
+    ageController.dispose();
+    weightController.dispose();
+    specialityController.dispose();
+    sessionRateController.dispose();
+
   }
 
   void _onImageButtonPressed(ImageSource source) async {
@@ -242,6 +279,21 @@ class _FormSectionState extends State<FormSection> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  profilePic != null ?
+
+                  ClipRRect(
+                      borderRadius:
+                      BorderRadius.circular(60),
+                      child: CachedNetworkImage(
+                        width: 100.0,
+                        height: 100.0,
+                        fit: BoxFit.cover,
+                        imageUrl: profilePic??"",
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(),
+                        errorWidget: (context, url, ex) =>
+                            Icon(Icons.error),
+                      )) :
                   _previewImage(),
 
                   Padding(
@@ -251,6 +303,7 @@ class _FormSectionState extends State<FormSection> {
                   ProfileInputField(
                     hintText: 'Trainer Name',
                     icon: Icons.account_circle,
+                    controller: userNameController,
                     validator: (value) {
                       return Validator().textValidator(value);
                     },
@@ -264,6 +317,7 @@ class _FormSectionState extends State<FormSection> {
                   ProfileInputField(
                     hintText: 'Mobile number',
                     icon: Icons.phone_iphone,
+                    controller: phoneController,
 
                     validator: (value) {
                       return Validator().textValidator(value);
@@ -336,7 +390,9 @@ class _FormSectionState extends State<FormSection> {
 builder: (_,value,child){
   return value !=null ? ListTile(
     title: Text(value.certName),
-    trailing: Icon(Icons.cancel,color: Colors.red,),
+    trailing: IconButton(icon: Icon(Icons.cancel,color: Colors.red,), onPressed: (){
+      ProfileProvider.instance().deleteCertificateDocument(value.certId, widget.userId);
+    }),
   ) : Container();
 },
                       ),);
@@ -390,14 +446,14 @@ builder: (_,value,child){
                       padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height / 50)),
 
-                  Button(
+              loading ?CircularProgressIndicator() :   Button(
                       text: 'Update',
                       onClick: () async {
     if (_regularFormKey.currentState.validate()) {
       setState(() {
         loading = true;
       });
-      if (file != null) {
+      if (file != null && profilePic == null) {
         var dir = await path_provider.getTemporaryDirectory();
         var targetPath = dir.absolute.path + "/temp.png";
 
@@ -427,10 +483,98 @@ builder: (_,value,child){
                 .saveUserData(widget.userId, userData)
                 .then((_) {
               print("successfull");
+
+              setState(() {
+                loading = false;
+              });
+
+              Navigator.of(context).pop();
             });
           });
         });
-      }
+      } else if(file == null && profilePic != null){
+
+            Map userData = Map<String, dynamic>();
+
+
+            userData[Config.profilePicUrl] = profilePic;
+            userData[Config.fullNames] = userNameController.text;
+            userData[Config.location] = locationController.text;
+            userData[Config.height] = heightController.text;
+            userData[Config.age] = ageController.text;
+            userData[Config.weight] = weightController.text;
+            userData[Config.phone] = phoneController.text;
+            userData[Config.sessionRate] = sessionRateController.text;
+            userData[Config.speciality] = specialityController.text;
+
+
+            ProfileProvider.instance()
+                .saveUserData(widget.userId, userData)
+                .then((_) {
+              print("successfull");
+
+              setState(() {
+                loading = false;
+              });
+              Navigator.of(context).pop();
+            });
+
+
+
+      } else if(file == null && profilePic != null){
+
+        var dir = await path_provider.getTemporaryDirectory();
+        var targetPath = dir.absolute.path + "/temp.png";
+
+        print("file image is" + file.path);
+        compressAndGetFile(file, targetPath)
+            .then((File result) {
+          print("result is" + result.path);
+
+          ProfileProvider.instance()
+              .uploadImage(result)
+              .then((value) {
+            Map userData = Map<String, dynamic>();
+
+
+            userData[Config.profilePicUrl] = value;
+            userData[Config.fullNames] = userNameController.text;
+            userData[Config.location] = locationController.text;
+            userData[Config.height] = heightController.text;
+            userData[Config.age] = ageController.text;
+            userData[Config.weight] = weightController.text;
+            userData[Config.phone] = phoneController.text;
+            userData[Config.sessionRate] = sessionRateController.text;
+            userData[Config.speciality] = specialityController.text;
+
+
+            ProfileProvider.instance()
+                .saveUserData(widget.userId, userData)
+                .then((_) {
+              print("successfull");
+
+              setState(() {
+                loading = false;
+              });
+              Navigator.of(context).pop();
+            });
+          });
+        });
+
+      }else
+        {
+          setState(() {
+            loading = false;
+          });
+
+          Scaffold.of(context).showSnackBar(SnackBar(
+            backgroundColor: Theme.of(context).primaryColor,
+            content: Text(
+                'Please add a profile picture'),
+            duration: Duration(seconds: 3),
+          ));
+        }
+
     }
                       })
                       ,

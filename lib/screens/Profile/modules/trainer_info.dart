@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:zing_fitnes_trainer/providers/profile_provider.dart';
+import 'package:zing_fitnes_trainer/screens/Profile/certificate_screen.dart';
+import 'package:zing_fitnes_trainer/screens/Profile/trainer_profile_model.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/personal_details.dart';
 
 class TrainerInfo extends StatelessWidget {
+  TrainerInfo(this.userId,this.profileModel);
+  final String userId;
+  final TrainerProfileModel profileModel;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,6 +23,21 @@ class TrainerInfo extends StatelessWidget {
                     color: MyColors().gray,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: ListTile(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return StreamProvider.value(
+                            value: ProfileProvider.instance()
+                                .streamUserCerts(userId),
+                            catchError: (context, error) {
+                              print(error);
+                            },
+                            child: CertificateScreen(userId));
+                        //  child: ProfileRegularUser();
+                      }),
+                    );
+                  },
                   contentPadding: EdgeInsets.all(0),
                   leading: Image.asset("assets/images/certification.png"),
                   title: Text("Certificates"),
@@ -33,15 +55,15 @@ class TrainerInfo extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                detailItem("Service area", "Outdoor"),
+                detailItem("Service area", profileModel.serviceArea),
                 Divider(
                   color: MyColors().gray,
                 ),
-                detailItem("Experience", "6 Years"),
+                detailItem("Experience", profileModel.experience),
                 Divider(
                   color: MyColors().gray,
                 ),
-                detailItem("Session rate", "\$10 per hour"),
+                detailItem("Session rate", profileModel.sessionRate),
                 Divider(
                   color: MyColors().gray,
                 ),
@@ -49,7 +71,7 @@ class TrainerInfo extends StatelessWidget {
                 Divider(
                   color: MyColors().gray,
                 ),
-                detailItem("Speciality", "Cardio"),
+                detailItem("Speciality", profileModel.speciality),
               ],
             )
           ]),

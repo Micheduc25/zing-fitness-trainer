@@ -10,18 +10,31 @@ class TrainerProfileModel{
   String sessionRate;
   String profilePicUrl;
   String speciality;
+  String height,age,weight,email,location;
 
-  TrainerProfileModel({this.userId,this.profilePicUrl, this.name, this.phoneNumber, this.serviceArea,
-      this.experience, this.sessionRate, this.speciality});
 
+  TrainerProfileModel({this.userId, this.name, this.phoneNumber,
+      this.serviceArea, this.experience, this.sessionRate, this.profilePicUrl,
+      this.speciality, this.height, this.age, this.weight,this.email,this.location});
 
   factory TrainerProfileModel.fromFirestore(DocumentSnapshot docSnapShot){
 
     return TrainerProfileModel(
       userId: docSnapShot.data[Config.userId],
       name: docSnapShot.data[Config.fullNames],
-      phoneNumber: docSnapShot.data[Config.phone],
-      profilePicUrl: docSnapShot.data[Config.profilePicUrl]
+      email: docSnapShot.data[Config.email],
+      phoneNumber: docSnapShot.data[Config.phone]??"",
+      profilePicUrl: docSnapShot.data[Config.profilePicUrl]??"",
+      height: docSnapShot.data[Config.height]??"",
+      age: docSnapShot.data[Config.age]??"",
+      weight: docSnapShot.data[Config.weight]??"",
+      speciality: docSnapShot.data[Config.speciality]??"",
+      sessionRate: docSnapShot.data[Config.sessionRate]??"",
+      experience: docSnapShot.data[Config.experience]??"",
+      serviceArea: docSnapShot.data[Config.serviceArea]??"",
+      location: docSnapShot.data[Config.location]??"",
+
+
 
 
     );

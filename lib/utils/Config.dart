@@ -143,6 +143,8 @@ class Config{
 
 
   static final String country= "country";
+  static final String experience= "experience";
+  static final String serviceArea= "serviceArea";
   static final String interestedActivities= "interestedActivities";
 
 

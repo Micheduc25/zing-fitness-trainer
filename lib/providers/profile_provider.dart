@@ -112,5 +112,16 @@ class ProfileProvider extends ChangeNotifier{
     });
   }
 
+  /// delete single certificate document
+  Future<void> deleteCertificateDocument(String certId,String userId) {
+    return _firestore
+        .collection(Config.certificates).document(certId).delete().then((_){
+          _firestore.collection(Config.users).document(userId).collection(Config.userCertificates)
+              .document(certId).delete();
+    });
+
+
+  }
+
 
 }

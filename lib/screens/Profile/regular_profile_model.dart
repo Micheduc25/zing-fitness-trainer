@@ -22,11 +22,11 @@ class RegularProfileModel{
       name: docSnapShot.data[Config.fullNames],
       phoneNumber: docSnapShot.data[Config.phone],
       profilePicUrl: docSnapShot.data[Config.profilePicUrl],
-      height: docSnapShot.data[Config.height],
-      age: docSnapShot.data[Config.age],
-      email: docSnapShot.data[Config.email],
-      weight: docSnapShot.data[Config.weight],
-      location: docSnapShot.data[Config.location],
+      height: docSnapShot.data[Config.height]??"",
+      age: docSnapShot.data[Config.age]??"",
+      email: docSnapShot.data[Config.email]??"",
+      weight: docSnapShot.data[Config.weight]??"",
+      location: docSnapShot.data[Config.location]??"",
 
 
     );

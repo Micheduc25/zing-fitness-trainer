@@ -11,7 +11,7 @@ import 'package:zing_fitnes_trainer/providers/profile_provider.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/pFootbg.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/profileInputField.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/row_text_input.dart';
-import 'package:zing_fitnes_trainer/screens/Profile/profile.dart';
+import 'package:zing_fitnes_trainer/screens/Profile/profile_trainer_user.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/regular_profile_model.dart';
 import 'package:zing_fitnes_trainer/utils/Config.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
@@ -262,12 +262,10 @@ class _EditProfileRegularState extends State<EditProfileRegular> {
                                   text:'Update' ,
                                   onClick: () async{
     if (_regularFormKey.currentState.validate()) {
-      setState(() {
-        loading = true;
-      });
-      if (file != null){
-
-
+      if (file != null && profilePic == null) {
+        setState(() {
+          loading = true;
+        });
         var dir = await path_provider.getTemporaryDirectory();
         var targetPath = dir.absolute.path + "/temp.png";
 
@@ -301,12 +299,87 @@ class _EditProfileRegularState extends State<EditProfileRegular> {
           });
         });
       }
-    }else
-      {
+      else if (file == null && profilePic != null) {
         setState(() {
-          loading = false;
+          loading = true;
         });
+        print("here");
+
+        Map userData = Map<String, dynamic>();
+
+        userData[Config.profilePicUrl] = profilePic;
+        userData[Config.fullNames] = userNameController.text;
+        userData[Config.location] = locationController.text;
+        userData[Config.height] = heightController.text;
+        userData[Config.age] = ageController.text;
+        userData[Config.weight] = weightController.text;
+        userData[Config.phone] = phoneController.text;
+
+        ProfileProvider.instance()
+            .saveUserData(widget.regularProfileModel.userId, userData)
+            .then((_) {
+          print("successfull");
+          setState(() {
+            loading = false;
+          });
+          Navigator.of(context).pop();
+        });
+      } else if (file != null && profilePic != null) {
+        setState(() {
+          loading = true;
+        });
+
+        var dir = await path_provider.getTemporaryDirectory();
+        var targetPath = dir.absolute.path + "/temp.png";
+
+        print("file image is" + file.path);
+        compressAndGetFile(file, targetPath)
+            .then((File result) {
+          print("result is" + result.path);
+
+          ProfileProvider.instance()
+              .uploadImage(result)
+              .then((value) {
+            Map userData = Map<String, dynamic>();
+
+            userData[Config.profilePicUrl] = value;
+            userData[Config.fullNames] = userNameController.text;
+            userData[Config.location] = locationController.text;
+            userData[Config.height] = heightController.text;
+            userData[Config.age] = ageController.text;
+            userData[Config.weight] = weightController.text;
+            userData[Config.phone] = phoneController.text;
+
+            ProfileProvider.instance()
+                .saveUserData(widget.regularProfileModel.userId, userData)
+                .then((_) {
+              print("successfull");
+              setState(() {
+                loading = false;
+              });
+              Navigator.of(context).pop();
+            });
+          });
+        });
+      } else {
+        Scaffold.of(context).showSnackBar(SnackBar(
+          backgroundColor: Theme
+              .of(context)
+              .primaryColor,
+          content: Text(
+              'Please add a profile picture'),
+          duration: Duration(seconds: 3),
+        ));
       }
+    }else{
+      Scaffold.of(context).showSnackBar(SnackBar(
+        backgroundColor: Theme
+            .of(context)
+            .primaryColor,
+        content: Text('Please Fill the Form'),
+        duration: Duration(seconds: 3),
+      ));
+    }
                                   },
                                 ),
 

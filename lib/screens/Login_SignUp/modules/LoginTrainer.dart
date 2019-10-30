@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:zing_fitnes_trainer/components/passwordInput.dart';
 import 'package:zing_fitnes_trainer/providers/profile_provider.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/edit_profile_trainer.dart';
-import 'package:zing_fitnes_trainer/screens/Profile/profile.dart';
+import 'package:zing_fitnes_trainer/screens/Profile/profile_trainer_user.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/profile_regular_user.dart';
 import 'package:zing_fitnes_trainer/utils/Config.dart';
 import 'package:zing_fitnes_trainer/utils/authentication.dart';
@@ -227,12 +227,28 @@ class _LoginTrainerState extends State<LoginTrainer> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) {
-                return EditProfileTrainer(userId: firebaseUserId,);
+                //return ProfilePage(userId: firebaseUserId,);
+                return ProfileTrainerUser(userId: firebaseUserId,);
               }),
             );
             */
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return StreamProvider.value(
+                    value: ProfileProvider.instance()
+                        .streamTrainerUserProfile(firebaseUserId),
+                    catchError: (context, error) {
+                      print(error);
+                    },
+                    child: ProfileTrainerUser(userId: firebaseUserId,));
+                //  child: ProfileRegularUser();
+              }),
+            );
 
 
+
+/*
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) {
@@ -246,7 +262,7 @@ class _LoginTrainerState extends State<LoginTrainer> {
                 //  child: ProfileRegularUser();
               }),
             );
-
+*/
             print("login was successfull");
           });
         } else {

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:zing_fitnes_trainer/screens/Profile/trainer_profile_model.dart';
 import 'package:zing_fitnes_trainer/utils/myColors.dart';
 
 class PersonalDetails extends StatelessWidget {
+  PersonalDetails(this.userId,this.profileModel);
+  final String userId;
+  final TrainerProfileModel profileModel;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,8 +22,8 @@ class PersonalDetails extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  _physicalItem("Height", "172 cm"),
-                  _physicalItem("Weight", "63 kg"),
+                  _physicalItem("Height", profileModel.height??""),
+                  _physicalItem("Weight", profileModel.weight),
                   _physicalItem("HR max", "189"),
                   _physicalItem("Type", "Crossfit"),
                 ],
@@ -34,17 +38,17 @@ class PersonalDetails extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                detailItem("Trainer name", "Nathan Riley"),
+                detailItem("Trainer name", profileModel.name),
                 Divider(
                   color: MyColors().gray,
                   thickness: 2,
                 ),
-                detailItem("Email Id", "zhenya@imail.com"),
+                detailItem("Email Id", profileModel.email),
                 Divider(
                   color: MyColors().gray,
                   thickness: 2,
                 ),
-                detailItem("Mobile no", "+237 679361858"),
+                detailItem("Mobile no",profileModel.phoneNumber),
               ],
             )
           ]),
