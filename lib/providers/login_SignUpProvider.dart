@@ -5,70 +5,51 @@ import 'package:zing_fitnes_trainer/screens/Login_SignUp/modules/LoginRegular.da
 import 'package:zing_fitnes_trainer/screens/Login_SignUp/modules/LoginTrainer.dart';
 import 'package:zing_fitnes_trainer/utils/Config.dart';
 
-
-
-
-
 class LoginSignUpProvider with ChangeNotifier {
-
   Firestore _firestore;
   //FirebaseStorage storage;
 
   FirebaseAuth firebaseAuth;
 
+  LoginSignUpProvider.instance()
+      : _firestore = Firestore.instance,
+        firebaseAuth = FirebaseAuth.instance;
 
-  LoginSignUpProvider.instance():
-      _firestore = Firestore.instance,
-      firebaseAuth = FirebaseAuth.instance;
-
-
-  Future<String> login(){
+  Future<String> login() {
     Future<FirebaseUser> user = firebaseAuth.currentUser();
     return user.then((FirebaseUser firebaseUser) async {
-       if(firebaseUser.isEmailVerified)
-         {
-           return firebaseUser.uid;
-         }else
-           {
-             return "Please Verify Your Email Address";
-           }
-
-
+      if (firebaseUser.isEmailVerified) {
+        return firebaseUser.uid;
+      } else {
+        return "Please Verify Your Email Address";
+      }
     });
   }
 
-
-  Future<String> saveUserData(String phoneNumber,String fullNames,String userType){
+  Future<String> saveUserData(
+      String phoneNumber, String fullNames, String userType) {
     Future<FirebaseUser> user = firebaseAuth.currentUser();
     return user.then((FirebaseUser firebaseUser) async {
-
-      print("user id is dollar " +firebaseUser.uid );
+      print("user id is dollar " + firebaseUser.uid);
       try {
         await firebaseUser.sendEmailVerification();
 
-        var map =  Map<String, dynamic>();
+        var map = Map<String, dynamic>();
         map[Config.userId] = firebaseUser.uid;
         map[Config.email] = firebaseUser.email;
         map[Config.phone] = phoneNumber;
         map[Config.fullNames] = fullNames;
         map[Config.userType] = userType;
 
-
-
         map[Config.admin] = false;
-
-
 
         // map[Config.notificationToken] = fcmToken;
         map[Config.createdOn] = FieldValue.serverTimestamp();
-        _firestore.collection(Config.users)
+        _firestore
+            .collection(Config.users)
             .document(firebaseUser.uid)
-            .setData(map,merge: true)
-
-            .then((_) {
-
-
-        });
+            .setData(map, merge: true)
+            .then((_) {});
 
         return firebaseUser.uid;
       } catch (e) {
@@ -77,30 +58,15 @@ class LoginSignUpProvider with ChangeNotifier {
       }
 
       return "An Error Occured";
-
-
-
-
     });
   }
 
-
-  Future<String> loginUser(){
+  Future<String> loginUser() {
     Future<FirebaseUser> user = firebaseAuth.currentUser();
     return user.then((FirebaseUser firebaseUser) async {
-
-
       return firebaseUser.uid;
-
-
     });
   }
-
-
-
-
-
-
 
   String _loginEmail;
   set setEmail(value) {
@@ -164,17 +130,13 @@ class LoginSignUpProvider with ChangeNotifier {
 
   get readAutovalidate => autovalidate;
 
-
   //here we manage the keyboard types for form inputs
-  
-
 
   //
   //here is the section for the regular user
   //
 
   Widget _codeRegular = TempRegular();
-
 
   set changeCodeRegular(value) {
     _codeRegular = value;
@@ -183,15 +145,11 @@ class LoginSignUpProvider with ChangeNotifier {
 
   get showCodeRegular => _codeRegular;
 
-
-
-
   //
   //here is the trainer section
   //
 
   Widget _codeTrainer = TempTrainer();
-
 
   set changeCodeTrainer(value) {
     _codeTrainer = value;
@@ -218,7 +176,6 @@ class TempRegular extends StatelessWidget {
     );
   }
 }
-
 
 class TempTrainer extends StatelessWidget {
   @override

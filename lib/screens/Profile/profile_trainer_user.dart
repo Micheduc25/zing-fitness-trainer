@@ -49,9 +49,9 @@ class ProfilePageBody extends StatelessWidget {
   final String userId;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: BoxConstraints.expand(),
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
+      child: Container(
+        constraints: BoxConstraints(minHeight:  MediaQuery.of(context).size.height * 0.883),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[

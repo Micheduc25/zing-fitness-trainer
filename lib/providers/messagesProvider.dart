@@ -7,7 +7,8 @@ class MessageData with ChangeNotifier {
     {"content": "Am greeting too", "time": "02:32 AM", 'from': "other"}
   ];
 
-  get getMessages => this.messageList;
+  List<Map<String, String>> get getMessages =>
+      this.messageList.reversed.toList();
 
   getAMessage(int index) {
     return this.messageList[index];

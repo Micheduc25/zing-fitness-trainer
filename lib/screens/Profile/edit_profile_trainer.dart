@@ -33,16 +33,17 @@ class EditProfileTrainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return  Scaffold(
-            appBar: AppBar(
-              elevation: 0.0,
-              iconTheme: IconThemeData(color: MyColors().deepBlue, size: 40),
-              backgroundColor: MyColors().skyBlue,
+    var myColors=MyColors();
+        return  Scaffold(
+                appBar: AppBar(
+                  elevation: 0.0,
+                  iconTheme: IconThemeData(color:myColors.deepBlue, size: 40),
+              backgroundColor:myColors.skyBlue,
               title: Text(
                   "Edit Profile",
 
                   style: TextStyle(
-                      color: MyColors().deepBlue,
+                      color:myColors.deepBlue,
                       fontSize: 17,
                       fontWeight: FontWeight.w900),
 
@@ -50,7 +51,7 @@ class EditProfileTrainer extends StatelessWidget {
               centerTitle: true,
             ),
             body: Container(
-              color: MyColors().skyBlue,
+              color:myColors.skyBlue,
               height: MediaQuery.of(context).size.height,
               child: SingleChildScrollView(
                 child: Column(

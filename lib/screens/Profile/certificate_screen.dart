@@ -18,43 +18,63 @@ class CertificateScreen extends StatelessWidget {
         backgroundColor: MyColors().white,
         title: Text(
           "Certificates",
-
           style: TextStyle(
               color: MyColors().deepBlue,
               fontSize: 17,
               fontWeight: FontWeight.w900),
-
         ),
         centerTitle: true,
       ),
-      body: userCertModel != null ?SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: ListView.builder(
-            shrinkWrap: true,
-            physics: BouncingScrollPhysics(),
-            itemBuilder: (context,index){
-              return StreamProvider.value(value: ProfileProvider.instance().streamCertificateDocument(userCertModel[index].certId),
-                catchError: (context,error){
-                  print(error);
-                }, child: Consumer<CertificateModel>(
-                  builder: (_,value,child){
-                    return value !=null ? Column(children: <Widget>[
-                      ListTile(
-                      title: Text(value.certName),
-                      trailing: IconButton(icon: Icon(Icons.cancel,color: Colors.red,), onPressed: (){
-                        ProfileProvider.instance().deleteCertificateDocument(value.certId, userId);
-                      }),
-                    ),
-Divider(),
-
-                    ],) : Container();
+      body: userCertModel != null
+          ? SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return StreamProvider.value(
+                      value: ProfileProvider.instance()
+                          .streamCertificateDocument(
+                              userCertModel[index].certId),
+                      catchError: (context, error) {
+                        print(error);
+                      },
+                      child: Consumer<CertificateModel>(
+                        builder: (_, value, child) {
+                          return value != null
+                              ? Column(
+                                  children: <Widget>[
+                                    ListTile(
+                                      title: Text(value.certName),
+                                      trailing: IconButton(
+                                          icon: Icon(
+                                            Icons.cancel,
+                                            color: Colors.red,
+                                          ),
+                                          onPressed: () {
+                                            ProfileProvider.instance()
+                                                .deleteCertificateDocument(
+                                                    value.certId, userId);
+                                          }),
+                                    ),
+                                    Divider(),
+                                  ],
+                                )
+                              : Container();
+                        },
+                      ),
+                    );
                   },
-                ),);
-            },
-            itemCount: userCertModel.length,),
-        ),
-      ) : Container(),
+                  itemCount: userCertModel.length,
+                ),
+              ),
+            )
+          : Container(
+              child: Center(
+                child: Text("No Certificate uploaded for the moment"),
+              ),
+            ),
     );
   }
 }

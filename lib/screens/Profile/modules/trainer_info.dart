@@ -7,7 +7,7 @@ import 'package:zing_fitnes_trainer/utils/myColors.dart';
 import 'package:zing_fitnes_trainer/screens/Profile/modules/personal_details.dart';
 
 class TrainerInfo extends StatelessWidget {
-  TrainerInfo(this.userId,this.profileModel);
+  TrainerInfo(this.userId, this.profileModel);
   final String userId;
   final TrainerProfileModel profileModel;
   @override
@@ -15,15 +15,17 @@ class TrainerInfo extends StatelessWidget {
     return Container(
         alignment: Alignment.topLeft,
         child: SingleChildScrollView(
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             //the gray container containing physical properties and their values
             Container(
-                padding: EdgeInsets.only(top: 15, bottom: 15, left: 15, right: 0),
+                padding:
+                    EdgeInsets.only(top: 15, bottom: 15, left: 15, right: 0),
                 decoration: BoxDecoration(
                     color: MyColors().gray,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: ListTile(
-                  onTap: (){
+                  onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) {

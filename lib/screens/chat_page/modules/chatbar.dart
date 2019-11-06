@@ -12,6 +12,13 @@ class _ChatBarState extends State<ChatBar> {
   final myText = new TextEditingController();
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    myText.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
@@ -33,9 +40,15 @@ class _ChatBarState extends State<ChatBar> {
               child: TextField(
                 controller: myText,
                 decoration: InputDecoration(
-                  icon: Icon(
-                    Icons.attach_file,
-                    color: MyColors().deepBlue,
+                  icon: InkWell(
+                    child: Icon(
+                      Icons.attach_file,
+                      color: MyColors().deepBlue,
+                    ),
+                    onTap: () {
+                      //function to attach a file
+                      print("attach");
+                    },
                   ),
                   hintText: "Type Message...",
                   hintStyle:
