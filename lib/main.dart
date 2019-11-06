@@ -11,8 +11,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final preferences = await StreamingSharedPreferences.instance;
   final settings = AppSettings(preferences);
-  //runApp(App(settings));
-  runApp(Conversations());
+  runApp(App(settings));
+  
 }
 
 class App extends StatelessWidget {
